@@ -1,6 +1,8 @@
 # 官方文档索引（INDEX）—— 问题 → 文档 → 页码
 
-> 先查这张表，再 grep 文本层；图示页看 `knowledge/manuals/figures/<slug>-pNN.png`。
+> 先查这张表，再 grep / read `knowledge/manuals/text/<slug>.md`（真正的 Markdown：标题、
+> 列表、```text 命令块、图片引用都在里面）；只有**需看图页**（文本层 <160 字符）才去
+> `read_image` 打开 `knowledge/manuals/figures/<slug>-pNN.png`。
 > 引用官方结论时写「《文档名》 p.N」。手册里的命令≠可自动执行：必须按
 > [`ATTENTION/ATTENTION.md`](../ATTENTION/ATTENTION.md) 分类后执行。
 
@@ -25,23 +27,38 @@
 | SLAM 建图、楼梯案例、图形化编程、比赛程序常见问题 | 《教员手册》 p.28–84 | 楼梯 p.34–48；SLAM p.51–70；FAQ p.76–84 | `sudo -S bash bodyhub.sh`；`rosnode list` 确认 start.sh 是否已开机启动；「communicate with master!」报错→手动 `~/robot_ros_application/scripts/start.sh` |
 | 本项目（RobanLab Doctor）自身的方案与计划 | 《RobanLab_Doctor_产品设计技术方案与研发计划_v2_修改版》 | p.1–11 | 产品/研发方案，不是机器人运维手册；引用时区分「官方」与「我们的方案」 |
 
-## 二、文档清单（11 份）
+## 二、文档清单（12 份）
 
-| 文档（原件在 `manuals/pdf/`） | 页数 | 可搜索文本 | 图示页（需看图） |
+> 阅读对象是 `manuals/text/*.md`（已由 PDF 转换为 Markdown，含标题/列表/代码块，
+> 并在图片页就地嵌入 PNG 链接）。原件仅作存档，不需要再解析 PDF。
+
+| 文档（原件在 `manuals/pdf/`） | 页数 | 可搜索正文 | 需看图的页 |
 |---|---:|---|---|
-| `ROBAN机器人使用入门.pdf` | 43 | `text/ROBAN机器人使用入门.md` | p.4–9, p.16–18 |
-| `Roban_教员培训手册_20220111.pdf` | 84 | `text/Roban_教员培训手册_20220111.md` | 若干（p.2, p.10–13 等） |
-| `Roban机器人自检手册.pdf` | 2 | `text/Roban机器人自检手册.md` | 2 张截图 |
-| `Roban机器人版本查询手册.pdf` | 2 | `text/Roban机器人版本查询手册.md` | p.1–2 |
-| `Roban查零点步骤.pdf` | 1 | `text/Roban查零点步骤.md` | p.1 |
-| `Roban零点调试(1).pdf` | 12 | `text/Roban零点调试-1-.md` | p.6, p.8, p.10, p.12 |
-| `Roban拆机培训.pdf` | 24 | `text/Roban拆机培训.md` | **全部页**（107 页渲染的 PNG 里占多数） |
-| `Roban机器人离线镜像刷新手册.pdf` | 12 | `text/Roban机器人离线镜像刷新手册.md` | p.1–12 |
-| `Roban开机无法自动进入系统(1).pdf` | 1 | `text/Roban开机无法自动进入系统-1-.md` | p.1 |
-| `所有节点 topic 和 service 整理.pdf` | 3 | `text/所有节点-topic-和-service-整理.md` | 无图 |
-| `RobanLab_Doctor_产品设计技术方案与研发计划_v2_修改版.pdf` | 11 | `text/RobanLab_Doctor_..._修改版.md` | 有图表 |
+| `ROBAN机器人使用入门.pdf` | 43 | `text/ROBAN机器人使用入门.md` | 20 页（p.4–9, p.16–18 等） |
+| `Roban_教员培训手册_20220111.pdf` | 84 | `text/Roban_教员培训手册_20220111.md` | 38 页（p.2, p.10–13 等） |
+| `Roban机器人自检手册.pdf` | 2 | `text/Roban机器人自检手册.md` | 2 页（截图） |
+| `Roban机器人版本查询手册.pdf` | 2 | `text/Roban机器人版本查询手册.md` | p.2 |
+| `Roban查零点步骤.pdf` | 1 | `text/Roban查零点步骤.md` | 无 |
+| `Roban零点调试(1).pdf` | 12 | `text/Roban零点调试-1-.md` | 10 页（p.2, p.4–12；p.1、p.3 文本够用） |
+| `Roban拆机培训.pdf` | 24 | `text/Roban拆机培训.md` | **全部 24 页**（以图为主） |
+| `Roban机器人离线镜像刷新手册.pdf` | 12 | `text/Roban机器人离线镜像刷新手册.md` | **全部 12 页** |
+| `Roban开机无法自动进入系统(1).pdf` | 1 | `text/Roban开机无法自动进入系统-1-.md` | 无 |
+| `所有节点 topic 和 service 整理.pdf` | 3 | `text/所有节点-topic-和-service-整理.md` | 无 |
+| `RobanLab_Doctor_产品设计技术方案与研发计划_v2_修改版.pdf` | 11 | `text/RobanLab_Doctor_产品设计技术方案与研发计划_v2_修改版.md` | 无（文本层完整） |
+| `RobanLab_Doctor_技术调研报告_v1.0.pdf` | 23 | `text/RobanLab_Doctor_技术调研报告_v1.0.md` | 无（文本层完整） |
 
-共 183 页；107 页文本层 <160 字符，已渲染为 PNG 存于 `manuals/figures/`，页级元数据在 `manuals/pages.json`。
+> 末两份是**本项目自己的报告**（产品方案 / 技术调研，红皮书），不是官方运维手册：
+> 引用时须区分「官方规定」与「我们的方案」。
+
+共 **218 页**（12 份）；**107 页**需看图（文本层 <160 字符），`manuals/figures/` 下共 **207 张**
+PNG，页级元数据在 `manuals/pages.json`（`doc` / `slug` / `page` / `chars` / `hasImages` /
+`needsLook` / `figure` / `preview`）。`manifest.json` 的 `chars` 是**真实字符数**（不含空白/换行），
+比旧口径偏低属正常。
+
+> PNG 数（207）> 需看图页数（107）：渲染器把「文本薄 **或** 含图」的页都出图，多出的 100 张
+> 文本够用、仅备查——**该不该开图只看 `needsLook`**，不要只看 `hasImages`。
+> md 里的 `![...](../figures/xxx.png)` 只嵌在需看图页；若遇悬空链接，说明先跑了 extract、
+> 没先跑 render（见「四、搜索方法」的重建顺序）。
 
 ## 三、节点与数据流（自检/诊断时对照）
 
@@ -56,14 +73,35 @@
 
 ## 四、搜索方法
 
+**读手册 = 读 `.md`**：`grep` / `read` `knowledge/manuals/text/<slug>.md`，
+`<!-- page N -->` 标出页边界 → 得到页码。只有当该页 `needsLook=true`（文本层 <160 字符）
+才用 `read_image` 打开 `knowledge/manuals/figures/<slug>-pNN.png` 补看图示。
+
+正文已是 Markdown（标题/列表/```text 命令块），可直接 grep，也可用检索脚本：
+
 ```bash
 # 关键词搜索，返回文档+页码+片段
 python3 tools/manual_search.py "零点" --doc 零点调试
 python3 tools/manual_search.py "offset.yaml"
 python3 tools/manual_search.py "红字" --context 3
+python3 tools/manual_search.py "check" --pages-only     # 只要「文档 + 页码」
+python3 tools/manual_search.py --list                   # 每份文档：页数 / 需看图页 / 已渲染数
+python3 tools/manual_search.py --stats                  # 覆盖率自检：md ↔ PNG 是否一致
 
 # 直接 grep（带 <!-- page N --> 标记）
 grep -n -i "check" knowledge/manuals/text/Roban_教员培训手册_20220111.md
+```
+
+检索脚本会自动剥离 Markdown 语法、跳过 ```text 代码块再匹配，片段可直接阅读。
+`figures/` 被 gitignore，换机器后先按下面的顺序重建。
+
+重新生成（PDF 更新后；**顺序不能反——图必须先于文**，否则 md 里的
+`![...](../figures/xxx.png)` 链不到文件）：
+
+```bash
+python3 tools/render_manual_pages.py    # ① 渲染「文本薄 或 含图」的页 → figures/ + pages.json
+python3 tools/extract_manuals.py        # ② PDF → text/*.md + manifest.json（嵌入第 ① 步的 PNG）
+python3 tools/manual_search.py --stats  # ③ 校验：每个需看图页都有 PNG，且 PNG 都存在
 ```
 
 ## 五、自动检测如何用这些文档
