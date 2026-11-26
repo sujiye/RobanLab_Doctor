@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "servo-bus-intermittent-reads",
+  "title": "舵机总线间歇性读错误（dxlBulkRead）：优先查供电/线缆/接头",
+  "component": "servo.bus",
+  "checkIds": ["servo_bus_errors", "servo_scan"],
+  "signature": {
+    "predicates": [
+      { "path": "bodyhubState", "op": "eq", "value": "preReady" }
+    ],
+    "keywords": ["dxlBulkRead", "舵机", "总线", "servo"]
+  },
+  "autoRepairable": false,
+  "manualAdvice": "总线扫描仍能覆盖 1–22 时，读错误更像间歇性通信问题：先检查舵机供电、USB/串口线缆、接头和总线负载；不要自动修改配置或更换舵机。若错误持续增长并伴随缺号，再按硬件故障断电排查。",
+  "stats": {
+    "attempts": 0,
+    "successes": 0,
+    "failures": 0,
+    "lastOutcome": null,
+    "lastAttemptAt": null
+  },
+  "source": "seed",
+  "confidence": "medium",
+  "notes": "2026-11-19 基线：rosout 中 dxlBulkRead 错误 14→16 次缓慢增长，但 ScanServo 1–22 全部在线，故不自动修复。",
+  "createdAt": "2026-11-19T01:50:00.000Z",
+  "updatedAt": "2026-11-19T01:50:00.000Z"
+}

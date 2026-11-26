@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "servo-temperature-zero-readings",
+  "title": "部分舵机温度返回 0：无读数，不是 0°C",
+  "component": "servo.temperature",
+  "checkIds": ["servo_temperature"],
+  "signature": {
+    "predicates": [
+      { "path": "bodyhubState", "op": "eq", "value": "preReady" }
+    ],
+    "keywords": ["温度", "temperature", "0°C", "无读数"]
+  },
+  "autoRepairable": false,
+  "manualAdvice": "确认无温度读数的舵机 ID（本机为 14/15/19/21/22）是否未安装或型号不支持温度回读；这不是 0°C，不应据此判过热故障。最高温度以有读数 ID 为准。",
+  "stats": {
+    "attempts": 0,
+    "successes": 0,
+    "failures": 0,
+    "lastOutcome": null,
+    "lastAttemptAt": null
+  },
+  "source": "seed",
+  "confidence": "medium",
+  "notes": "2026-11-19 基线：峰值 41–42°C，ID 14/15/19/21/22 温度读 0（无读数）。",
+  "createdAt": "2026-11-19T01:50:00.000Z",
+  "updatedAt": "2026-11-19T01:50:00.000Z"
+}

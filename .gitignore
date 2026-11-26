@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+
+# 由 tools/render_manual_pages.py 从 PDF 重新生成的页面截图（约 77MB）
+knowledge/manuals/figures/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# 运行时产物
+reports/*.tmp
+*.log

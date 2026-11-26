@@ -1,0 +1,305 @@
+{
+  "schemaVersion": 1,
+  "name": "Roban 官方手册「可机器判定」基线",
+  "purpose": "把官方 PDF 手册里能被代码比对的数值/判据结构化，供 selfcheck 判定与 report 官方对照段落引用。原文全文在 knowledge/manuals/text/*.md（带 <!-- page N --> 标记），本文件只摘录可判定的事实，不粘贴整段原文。",
+  "source": {
+    "index": "knowledge/INDEX.md",
+    "cheatsheet": "knowledge/CHEATSHEET.md",
+    "manualTextDir": "knowledge/manuals/text/",
+    "pageMarkers": "<!-- page N -->"
+  },
+  "executionBoundary": "这里的每一条「官方做法」都是人工操作（见 ATTENTION/ATTENTION.md 分类）。代码只用来对照和给出建议，不得自动执行 check、零点调试、镜像刷新、重启/关机等动作。",
+  "hardware": {
+    "citation": "《ROBAN机器人使用入门》 p.6–9",
+    "jointCount": 22,
+    "realsense": "Intel RealSense D435",
+    "chinCamera": "USB 下巴摄像头 2592×1944",
+    "mainController": {
+      "model": "Intel NUC8i3BEH",
+      "cpu": "第八代 Intel Core i3-8109U",
+      "memory": "DDR4 SO-DIMM 8G（最高 32G）",
+      "storage": "120G SSD",
+      "citation": "《ROBAN机器人使用入门》 p.6"
+    },
+    "weightKg": 6.60,
+    "weightCitation": "《ROBAN机器人使用入门》 p.6",
+    "joints": {
+      "total": 22,
+      "breakdown": {
+        "head": 2,
+        "shoulder": "1 × 2",
+        "arm": 2,
+        "hand": "1 × 2",
+        "leg": 5,
+        "foot": 1
+      },
+      "servoIds": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
+      "machineCheck": "GetJointAngle 应返回 22 个缓存角；ScanServo 应扫到 ID 1–22",
+      "citation": "《ROBAN机器人使用入门》 p.7；舵机编号见《Roban零点调试》 p.3"
+    },
+    "cameras": {
+      "depth": {
+        "model": "Intel RealSense D435",
+        "resolutions": ["1280×720@30fps", "848×480@90fps"],
+        "machineCheck": "lsusb 应出现 RealSense；/camera/color/image_raw 应有数据",
+        "citation": "《ROBAN机器人使用入门》 p.6–7"
+      },
+      "chin": {
+        "type": "高清 USB 下巴摄像头",
+        "resolution": "2592×1944",
+        "machineCheck": "/dev/usb_cam 存在、/chin_camera/image 有数据",
+        "citation": "《ROBAN机器人使用入门》 p.7"
+      },
+      "microphoneArray": {
+        "count": 6,
+        "machineCheck": "/micarrays/wakeup 为事件式发布，短窗口无数据不等于故障",
+        "citation": "《Roban拆机培训》 p.7"
+      }
+    },
+    "battery": {
+      "cell": "锂聚合物动力电芯",
+      "capacitymAh": 4000,
+      "voltageV": 11.1,
+      "dischargeRate": "25C/30C",
+      "machineCheck": "电池判断以电压为准；官方标称 11.1V，低于约 10.8V 视为偏低",
+      "citation": "《ROBAN机器人使用入门》 p.7"
+    },
+    "powerAdapter": {
+      "input": "110~240V 50~60Hz 1.46A",
+      "output": "12V 10A",
+      "dcLineLengthM": 3.1,
+      "citation": "《ROBAN机器人使用入门》 p.7"
+    },
+    "interfaces": [
+      { "name": "磁吸传感器接口", "count": 2, "citation": "《ROBAN机器人使用入门》 p.6" },
+      { "name": "USB3.0 接口", "count": 2, "citation": "《ROBAN机器人使用入门》 p.6" },
+      { "name": "有线网络接口", "count": 1, "citation": "《ROBAN机器人使用入门》 p.6" },
+      { "name": "标准 HDMI2.0A 接口", "count": 1, "citation": "《ROBAN机器人使用入门》 p.6" },
+      { "name": "Type-C 接口", "count": 1, "citation": "《ROBAN机器人使用入门》 p.6" }
+    ],
+    "developmentEnvironment": {
+      "os": "Ubuntu 16.04 LTS",
+      "ros": "ROS Kinetic",
+      "python": "Python 2.7",
+      "note": "Roban 2.0 机型（Ubuntu 20.04）使用较新的 ROS 发行版；探测脚本按 kinetic/noetic/melodic 回退，不能只按 Kinetic 判断。",
+      "citation": "《ROBAN机器人使用入门》 p.6（开发环境）；机型区分见《Roban机器人版本查询手册》 p.2"
+    }
+  },
+  "modelDetection": {
+    "citation": "《Roban机器人版本查询手册》 p.2",
+    "command": "lsb_release -a",
+    "rules": [
+      {
+        "osReleaseContains": "16.04",
+        "robotModel": "Roban 1.0",
+        "citation": "《Roban机器人版本查询手册》 p.2"
+      },
+      {
+        "osReleaseContains": "20.04",
+        "robotModel": "Roban 2.0",
+        "citation": "《Roban机器人版本查询手册》 p.2"
+      }
+    ],
+    "codeCutoverDate": "2023-11-29",
+    "codeCutoverRule": "cd robot_ros_application/ && git log：仓库时间早于 2023-11-29 → 需人工执行更新脚本更新仓库代码",
+    "codeCutoverCitation": "《Roban机器人版本查询手册》 p.1；《Roban_教员培训手册》 p.9–10"
+  },
+  "bootBehavior": {
+    "citation": "《ROBAN机器人使用入门》 p.11–12；《Roban_教员培训手册》 p.4",
+    "servoLockAfterPowerOnSeconds": 40,
+    "postBootPose": "全部舵机加锁（无法摆动各关节），姿态恢复到初始站立姿态",
+    "preBootRequirement": "开机前须用颈部提带把机器人提至半蹲或站立状态，各舵机处于初始状态",
+    "emergencyRedButton": {
+      "effect": "舵机加锁/运动时按下 → 全部舵机解锁，机器人主机仍运行",
+      "consequence": "解锁后必须按关机流程关闭机器人，再按电源开关重新启动",
+      "citation": "《Roban_教员培训手册》 p.4"
+    },
+    "shutdownProcedure": "把机器人悬挂回悬架或平躺 → 背部电源开关向左拨 → 全部舵机解锁、主机关闭",
+    "shutdownCitation": "《ROBAN机器人使用入门》 p.12；《Roban_教员培训手册》 p.4",
+    "machineCheck": "uptimeSeconds 小于约 40 s（代码宽限期 120 s）时，节点/话题缺失不能直接判故障",
+    "bootAutologin": {
+      "officialFix": "sudo nano /etc/lightdm/lightdm.conf，在 autologin-user=lemon 下加 autologin-user-timeout=0",
+      "symptom": "开机后无法自动进入系统，需要接鼠标/键盘/显示器手动 login",
+      "boundary": "改配置文件属人工操作，agent 只读不写",
+      "citation": "《Roban开机无法自动进入系统》 p.1"
+    },
+    "bootAutostart": {
+      "expected": "机器人开机默认调用 ~/robot_ros_application/scripts/start.sh 启动所有节点（含 BodyHub 与相机）",
+      "verifyCommand": "rosnode list",
+      "officialFix": "缺 bodyhub/realsense 节点或直接报 “Unable to communicate with master!” 时，人工执行 ~/robot_ros_application/scripts/start.sh",
+      "boundary": "禁止自动重启 roscore/BodyHub，只给人工建议",
+      "citation": "《Roban_教员培训手册》 p.59–60"
+    }
+  },
+  "officialSelfCheck": {
+    "citation": "《Roban机器人自检手册》 p.1–2；《Roban_教员培训手册》 p.24",
+    "program": "check",
+    "howToRun": "VNC 或接屏幕进入桌面 → 右键 New Terminal → 输入 check 回车 → 依次选择编号查看是否有报错，有报错先截图反馈",
+    "terminalErrors": {
+      "whatToLookFor": "终端执行 ./start.sh 或开机时终端里的红字报错 → 截图反馈",
+      "citation": "《Roban机器人自检手册》 p.2"
+    },
+    "footPressureTest": {
+      "steps": "终端输入 check → 找到「脚底压感测试」→ 回车 → 按要求提起或放下机器人；提起时数值应为 0，放在水平地面时终端数值应为绿色",
+      "interpretation": "打印红色 = 有问题，绿色 = 正常",
+      "citation": "《Roban_教员培训手册》 p.24"
+    },
+    "boundary": "check 是交互式程序，agent 只静态定位它（probe 的 OFFICIAL_CHECK_PATH），不自动执行"
+  },
+  "zeroPoint": {
+    "citation": "《Roban零点调试》 p.1–7；《Roban查零点步骤》 p.1；《Roban_教员培训手册》 p.24–27、p.37",
+    "parameterPaths": [
+      {
+        "path": "~/.lejuconfig/offset.yaml",
+        "purpose": "机器人零点参数（官方主文件）",
+        "readCommand": "cd ~/.lejuconfig && sudo gedit offset.yaml（只读时只看，不写）",
+        "citation": "《Roban查零点步骤》 p.1；《Roban_教员培训手册》 p.37"
+      },
+      {
+        "path": "~/robot_ros_application/footstair/src/motion_interface/config/offset.yaml",
+        "purpose": "楼梯案例零点覆盖文件；官方做法是 cp ~/.lejuconfig/offset.yaml 到该路径",
+        "citation": "《Roban_教员培训手册》 p.37"
+      }
+    ],
+    "standardZeroPoints": [
+      { "servoIds": [1, 4], "target": "头部舵机外壳水平", "citation": "《Roban零点调试》 p.1；《Roban_教员培训手册》 p.24" },
+      { "servoIds": [5], "target": "手臂展开水平", "citation": "《Roban零点调试》 p.1；《Roban_教员培训手册》 p.24" },
+      { "servoIds": [6], "target": "胯（髓）关节水平", "citation": "《Roban零点调试》 p.1；《Roban_教员培训手册》 p.24" },
+      { "servoIds": [3, 8], "target": "脚底板水平", "citation": "《Roban零点调试》 p.2；《Roban_教员培训手册》 p.25" },
+      { "servoIds": [7], "target": "两条腿竖直，与 4/5/6/8 号线垂直", "citation": "《Roban零点调试》 p.2；《Roban_教员培训手册》 p.25" }
+    ],
+    "debugOrder": [
+      [7, 1],
+      [8, 2],
+      [9, 3],
+      [10, 4],
+      [11, 5],
+      [12, 6]
+    ],
+    "debugOrderRule": "从最上面的舵机开始，自上而下依次调试",
+    "debugOrderCitation": "《Roban零点调试》 p.3–7",
+    "symmetryRule": "对称舵机（7/1、8/2、9/3、10/4、11/5、12/6）同方向加/减数值一致",
+    "symmetryRuleCitation": "《Roban零点调试》 p.3",
+    "backupBeforeAdjust": {
+      "requirement": "调整零点前必须先人工备份原始零点（拍照/截图记录当前各舵机数值）",
+      "citation": "《Roban零点调试》 p.2；《Roban_教员培训手册》 p.25"
+    },
+    "boundary": "上位机「零点调试」会让关节运动，且写 offset.yaml 属于禁止自动执行动作，agent 只给人工步骤"
+  },
+  "imageRefresh": {
+    "citation": "《Roban机器人离线镜像刷新手册》 p.1、p.12；《Roban_教员培训手册》 p.16–22",
+    "prerequisites": [
+      { "item": "准备好再生龙（Clonezilla）启动 U 盘", "citation": "《Roban机器人离线镜像刷新手册》 p.1" },
+      { "item": "先保存/备份机器人零点参数（~/.lejuconfig/offset.yaml）", "citation": "《Roban机器人离线镜像刷新手册》 p.1；《Roban查零点步骤》 p.1" }
+    ],
+    "biosSettings": [
+      {
+        "path": "开机按 F2 → Advanced → Boot → Secure Boot（去掉勾选）",
+        "citation": "《Roban机器人离线镜像刷新手册》 p.11；《Roban_教员培训手册》 p.21–22"
+      },
+      {
+        "path": "Advanced → Power → “After Power Failure” 改为 “Power On”",
+        "machineCheck": "刷镜像后若机器人上电不自启，先核对该 BIOS 项",
+        "citation": "《Roban机器人离线镜像刷新手册》 p.12；《Roban_教员培训手册》 p.22"
+      }
+    ],
+    "boundary": "镜像烧写/刷新是整机刷系统，只能由用户现场手动完成，agent 只指导"
+  },
+  "checkToBaseline": {
+    "robot_model": {
+      "baseline": "modelDetection.rules",
+      "citation": "《Roban机器人版本查询手册》 p.2",
+      "manualAdvice": "用 lsb_release -a 确认机型：16.04 → Roban 1.0，20.04 → Roban 2.0；机型与镜像/程序版本不匹配时按官方版本查询手册更新代码。"
+    },
+    "ros_env": {
+      "baseline": "hardware.developmentEnvironment",
+      "citation": "《ROBAN机器人使用入门》 p.6；《Roban机器人版本查询手册》 p.2",
+      "manualAdvice": "Roban 1.0 官方环境为 Ubuntu 16.04 + ROS Kinetic + Python 2.7；2.0 机型 ROS 发行版不同，探测按 kinetic/noetic/melodic 回退后仍识别不到时人工核对 ROS 安装。"
+    },
+    "code_freshness": {
+      "baseline": "modelDetection.codeCutoverDate",
+      "citation": "《Roban机器人版本查询手册》 p.1；《Roban_教员培训手册》 p.9–10",
+      "manualAdvice": "cd robot_ros_application/ && git log 查看仓库时间；早于 2023-11-29 需人工执行更新脚本，agent 不自动改仓库。"
+    },
+    "boot_autologin": {
+      "baseline": "bootBehavior.bootAutologin",
+      "citation": "《Roban开机无法自动进入系统》 p.1",
+      "manualAdvice": "人工编辑 /etc/lightdm/lightdm.conf：在 autologin-user=lemon 下加 autologin-user-timeout=0（改文件需人工确认，不自动执行）。"
+    },
+    "boot_autostart": {
+      "baseline": "bootBehavior.bootAutostart",
+      "citation": "《Roban_教员培训手册》 p.59–60",
+      "manualAdvice": "官方做法：人工执行 ~/robot_ros_application/scripts/start.sh 启动节点；禁止自动重启 roscore/BodyHub。"
+    },
+    "boot_window": {
+      "baseline": "bootBehavior.servoLockAfterPowerOnSeconds",
+      "citation": "《ROBAN机器人使用入门》 p.11–12；《Roban_教员培训手册》 p.4",
+      "manualAdvice": "上电约 40 s 后全舵机加锁并恢复初始站立姿态；刚开机时节点未齐属于启动过程，稍后复测再判断。"
+    },
+    "expected_nodes": {
+      "baseline": "bootBehavior.bootAutostart",
+      "citation": "《Roban_教员培训手册》 p.59–60",
+      "manualAdvice": "官方要求 BodyHub 与 realsense2_camera 节点存在；缺失时人工执行 start.sh，而不是自动重启整机。"
+    },
+    "zero_point_backup": {
+      "baseline": "zeroPoint.parameterPaths",
+      "citation": "《Roban查零点步骤》 p.1；《Roban_教员培训手册》 p.37",
+      "manualAdvice": "先人工备份零点参数：cd ~/.lejuconfig && sudo gedit offset.yaml，拍照/截图保存；镜像刷新后写回并重启。"
+    },
+    "realsense_usb": {
+      "baseline": "hardware.cameras.depth",
+      "citation": "《ROBAN机器人使用入门》 p.6–7",
+      "manualAdvice": "官方规格为 Intel RealSense D435；lsusb 未见时人工检查 USB3.0 线缆、供电与驱动，必要时接显示器看终端红字报错。"
+    },
+    "chin_launch_path": {
+      "baseline": "hardware.cameras.chin",
+      "citation": "《ROBAN机器人使用入门》 p.7；《Roban_教员培训手册》 p.59–60",
+      "manualAdvice": "下巴相机 launch 文件缺失时人工核对 ~/robot_ros_application 目录完整性，再考虑更新代码仓库。"
+    },
+    "mic_array": {
+      "baseline": "hardware.cameras.microphoneArray",
+      "citation": "《Roban拆机培训》 p.7；《所有节点 topic 和 service 整理》 p.1",
+      "manualAdvice": "六麦克风阵列的 /micarrays/wakeup 为唤醒事件式发布，短窗口无数据不能直接判故障；用官方 check 程序逐项验证。"
+    },
+    "master_unreachable_logs": {
+      "baseline": "officialSelfCheck.terminalErrors",
+      "citation": "《Roban机器人自检手册》 p.2；《Roban_教员培训手册》 p.60",
+      "manualAdvice": "终端红字 “Unable to communicate with master!” 是官方已知现象：人工执行 ~/robot_ros_application/scripts/start.sh。"
+    },
+    "servo_scan": {
+      "baseline": "hardware.joints",
+      "citation": "《ROBAN机器人使用入门》 p.7",
+      "manualAdvice": "官方规格 22 个关节（舵机 ID 1–22）；总线缺号时人工检查舵机供电、线缆与接头，不自动改配置或换舵机。"
+    },
+    "servo_temperature": {
+      "baseline": "hardware.joints",
+      "citation": "《ROBAN机器人使用入门》 p.7；《Roban_教员培训手册》 p.23–24",
+      "manualAdvice": "温度 0 是无读数不是 0°C；结合是否安装该关节判断，必要时用官方 check 逐项确认。"
+    },
+    "battery_voltage": {
+      "baseline": "hardware.battery",
+      "citation": "《ROBAN机器人使用入门》 p.7",
+      "manualAdvice": "官方电池 4000mAh / 11.1V / 25C-30C；电压偏低时先人工测量与充电，不要带故障继续运行。"
+    },
+    "camera_chin": {
+      "baseline": "hardware.cameras.chin",
+      "citation": "《ROBAN机器人使用入门》 p.7；《Roban机器人自检手册》 p.1–2",
+      "manualAdvice": "用官方 check 程序逐项看报错并截图；节点重启属白名单动作且需前置条件，其余一律人工处理。"
+    },
+    "camera_color": {
+      "baseline": "hardware.cameras.depth",
+      "citation": "《ROBAN机器人使用入门》 p.6–7；《所有节点 topic 和 service 整理》 p.1",
+      "manualAdvice": "RealSense 彩色图频率低于 5 Hz 时人工检查 USB3.0 与供电，并查看开机终端红字报错。"
+    }
+  },
+  "probeFields": {
+    "robotModel": "env-probe 按《版本查询手册》p.2 解析 lsb_release 输出得到 Roban 1.0 / Roban 2.0",
+    "repo.commitDate": "与 modelDetection.codeCutoverDate 对照（《版本查询手册》p.1）",
+    "uptimeSeconds": "与 bootBehavior.servoLockAfterPowerOnSeconds 对照（《使用入门》p.11）",
+    "zeroPoint.officialOffset": "与 zeroPoint.parameterPaths[0] 对照（《查零点步骤》p.1）",
+    "jointCount": "与 hardware.joints.total 对照（《使用入门》p.7)",
+    "usb.realsense": "与 hardware.cameras.depth 对照（《使用入门》p.6–7）",
+    "boot.lightdm / boot.autologinUser / boot.autologinTimeout": "与 bootBehavior.bootAutologin 对照（《开机无法自动进入系统》p.1)",
+    "boot.startScript / boot.roscoreProcs": "与 bootBehavior.bootAutostart 对照（《教员手册》p.59–60)"
+  }
+}

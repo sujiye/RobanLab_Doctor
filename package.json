@@ -1,0 +1,13 @@
+{
+  "name": "roban-selfcheck-agent",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Roban 故障自检 / 知识库驱动自动修复 workflow（零 npm 依赖）",
+  "scripts": {
+    "test": "node --test workflow/auto-repair.test.js",
+    "selfcheck": "node workflow/harness-adapter.example.js selfcheck",
+    "plan": "node workflow/harness-adapter.example.js plan",
+    "auto": "node workflow/harness-adapter.example.js auto",
+    "auto:apply": "node workflow/harness-adapter.example.js auto --confirm"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "sensor-imu-no-data",
+  "title": "IMU /imu/Torso 短窗口无数据：可能事件式发布或未接入",
+  "component": "sensor.imu",
+  "checkIds": ["imu_torso"],
+  "signature": {
+    "predicates": [],
+    "keywords": ["imu", "IMU", "Torso", "无数据"]
+  },
+  "autoRepairable": false,
+  "manualAdvice": "短窗口无消息不等于故障：先确认 BodyHub/传感器是否处于会发布 IMU 的事件模式，再用更长窗口监听 /imu/Torso；未接入时登记为 UNKNOWN，不判故障。",
+  "stats": {
+    "attempts": 0,
+    "successes": 0,
+    "failures": 0,
+    "lastOutcome": null,
+    "lastAttemptAt": null
+  },
+  "source": "seed",
+  "confidence": "low",
+  "notes": "2026-11-19 三次基线均为 UNKNOWN（无数据），按数据语义不判故障。",
+  "createdAt": "2026-11-19T01:50:00.000Z",
+  "updatedAt": "2026-11-19T01:50:00.000Z"
+}

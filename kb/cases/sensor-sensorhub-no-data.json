@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "sensor-sensorhub-no-data",
+  "title": "SensorHub 温度话题短窗口无数据",
+  "component": "sensor.sensorhub",
+  "checkIds": ["sensor_hub_temperature"],
+  "signature": {
+    "predicates": [],
+    "keywords": ["SensorHub", "温度", "temperature", "无数据"]
+  },
+  "autoRepairable": false,
+  "manualAdvice": "传感器温度是低频/事件式发布时，短窗口无数据属正常：延长监听窗口确认；若长期无数据再看 SensorHub 节点日志与接线。",
+  "stats": {
+    "attempts": 0,
+    "successes": 0,
+    "failures": 0,
+    "lastOutcome": null,
+    "lastAttemptAt": null
+  },
+  "source": "seed",
+  "confidence": "low",
+  "notes": "2026-11-19 三次基线均为 UNKNOWN（无数据），按数据语义不判故障。",
+  "createdAt": "2026-11-19T01:50:00.000Z",
+  "updatedAt": "2026-11-19T01:50:00.000Z"
+}

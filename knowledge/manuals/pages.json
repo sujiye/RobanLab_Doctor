@@ -1,0 +1,1757 @@
+[
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 1,
+    "chars": 14,
+    "hasImages": true,
+    "preview": "ROBAN 机器人 使用入门",
+    "figure": "knowledge/manuals/figures/ROBAN机器人使用入门-p01.png"
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 2,
+    "chars": 2340,
+    "hasImages": true,
+    "preview": "2 目录 一、 配件总览 .................................................................................. 4 二、 ROBAN 的构成 .........",
+    "figure": null
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 3,
+    "chars": 2023,
+    "hasImages": true,
+    "preview": "3 (五) 机器人软件的下载和安装 ......................................................................................... 15 (六) 机器人软件",
+    "figure": null
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 4,
+    "chars": 75,
+    "hasImages": true,
+    "preview": "4 一、 配件总览 ① 机器人整体 ② 机器人运输箱 ③ 电池 ④ 充电座 ⑤ DC 输出线/控制线 ⑥ 平衡充电器 ⑦ AC 电源线 ⑧ 电源适配器",
+    "figure": "knowledge/manuals/figures/ROBAN机器人使用入门-p04.png"
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 5,
+    "chars": 143,
+    "hasImages": true,
+    "preview": "5 二、 ROBAN 的构成 (一) ROBAN 机器人简介 Roban 机器人的控制系统本质上就是一台安装的 Linux 系统的 计算机，该计算机上安装了机器人专用的软件系统，配合机器人本体 上的其他软硬件系统即可达到机器人的控制目标。 ",
+    "figure": "knowledge/manuals/figures/ROBAN机器人使用入门-p05.png"
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 6,
+    "chars": 284,
+    "hasImages": true,
+    "preview": "6 (四) 重量 ➢ 6.60kg (五) 主控制器 ➢ 英特尔NUC8i3BEH ➢ CPU：第八代智能英特尔酷睿i3-8109U ➢ 内存：DDR4 SO-DIMM 8G 内存（最高32G） ➢ 存储容量：120G SSD (六) 输入",
+    "figure": null
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 7,
+    "chars": 400,
+    "hasImages": true,
+    "preview": "7 ⚫ 工作环境：室内/室外 ⚫ 深度图像最大分辨率：1280×720@30fps 848×480@90fps ➢ 高清 USB 下巴摄像头 ⚫ 分辨率2592*1944/自动曝光/自动白平衡/自动消除灯光条 纹/自动黑电平校准/自动带低通",
+    "figure": null
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 8,
+    "chars": 116,
+    "hasImages": true,
+    "preview": "8 (十二) 可拓展磁吸传感器 打开 Roban 机器人胸口的盖板，可以看到 Roban 机器人的磁吸拓 展器模块。 根据不同的场景和需求，使用具备对应功能的传感器。该模块有以 下传感器可供拓展使用： ➢ 火焰传感器 ➢ 光敏传感器",
+    "figure": "knowledge/manuals/figures/ROBAN机器人使用入门-p08.png"
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 9,
+    "chars": 41,
+    "hasImages": true,
+    "preview": "9 ➢ 温湿度传感器 ➢ 气敏传感器 ➢ 触摸传感器 ➢ 风扇 ➢ 人体红外传感器",
+    "figure": "knowledge/manuals/figures/ROBAN机器人使用入门-p09.png"
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 10,
+    "chars": 305,
+    "hasImages": true,
+    "preview": "10 三、 ROBAN 机器人启动 (一) 安全提示 1. 开始使用前请详细阅读使用说明。 2. 十五岁以下未成年人请在成年人指导下观看使用。 3. 不建议对机器人内部进行拆装，对擅自改装所造成的问题生产商 不负责任。 4. 当机器人运行动",
+    "figure": null
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 11,
+    "chars": 215,
+    "hasImages": true,
+    "preview": "11 （2） 机器人开机前，请利用其脖子后方的提带提起机器人，使其处 于半蹲或站立状态，各个舵机位置位于初始状态。如下图所示： 2. 给机器人供电 使用配套的电源适配器（AC220V DC12V）给机器人供电（此操作仅 给机器人供电，并不会",
+    "figure": null
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 12,
+    "chars": 213,
+    "hasImages": true,
+    "preview": "12 3. 等待机器人开机 上电开机后，机器人主机将会开机运行，大概需要40 秒左右的等待 时间，全部舵机将会加锁（无法摆动各关节），机器人姿态将恢复到初始 站立姿态。 (三) 机器人关机 在你确认要关闭机器人时，请利用其脖子后方的提带将机",
+    "figure": null
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 13,
+    "chars": 175,
+    "hasImages": true,
+    "preview": "13 Roban 机器人支持：有线WLAN 连接和无线WiFi 连接两种方式。 建议使用WiFi 连接网络，下面介绍配置方式。 第一步：将机器人开机。 第二步：将Roban 机器人连接鼠标、键盘、显示器。 第三步：鼠标点击系统右上角的WiF",
+    "figure": null
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 14,
+    "chars": 106,
+    "hasImages": true,
+    "preview": "14 第五步：WiFi 连接成功后，在系统的右上角有一个弹窗提示，“你已 成功连接到名为12345678 的WiFi” 第六步：再次点击WiFi 按钮，找到“Connection information”并点击。",
+    "figure": "knowledge/manuals/figures/ROBAN机器人使用入门-p14.png"
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 15,
+    "chars": 311,
+    "hasImages": true,
+    "preview": "15 第七步：该页面为WiFi 的信息界面，需要将该WiFi 下机器人的IPv4 地址记录下来，方便后续利用VNC、VScode 等软件远程控制机器人。 如：172.20.10.4。 提示：如果身边没有显示器、键盘、鼠标，你也可以通过Win",
+    "figure": null
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 16,
+    "chars": 172,
+    "hasImages": true,
+    "preview": "16 ① 菜单栏 ② 时间控制轴 ③ 时间轴 ④ 积木块列表 ⑤ 拖拽编程区 ⑥ 3D 模拟窗口 ⑦ consol 区 ⑧ 标准动作库 2. 移动端 Roban 软件下载 以安卓设备安装Roban 软件为例，介绍软件下载安装步骤： 提示：建",
+    "figure": null
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 17,
+    "chars": 76,
+    "hasImages": true,
+    "preview": "17 （2）进入App 下载界面，选择“Android 下载”，点击弹出的“下载” 按钮。 （3）下载完毕后，点击“继续安装”，安装Roban App。",
+    "figure": "knowledge/manuals/figures/ROBAN机器人使用入门-p17.png"
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 18,
+    "chars": 77,
+    "hasImages": true,
+    "preview": "18 （4）安装完毕后，将“信任此应用”选项勾选并打开App。 （5）打开Roban App，看到软件的机器人连接界面，表明Roban 软 件已安装成功。",
+    "figure": "knowledge/manuals/figures/ROBAN机器人使用入门-p18.png"
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 19,
+    "chars": 215,
+    "hasImages": true,
+    "preview": "19 (六) 机器人软件的使用说明 此处以移动端Roban 软件展开说明。 下载并安装移动端Roban 软件后，需要将平板电脑和Roban 机器人 连接到同一个网络才能够控制。若机器人连接了错误的网络，可以连接 鼠标、键盘和显示器，在机器人",
+    "figure": null
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 20,
+    "chars": 116,
+    "hasImages": true,
+    "preview": "20 3. 连接机器人之后，可以看到以下界面。文件管理器里有各个已下 载的案例，点击案例右侧的三角形按钮即可运行该案例。 ① 菜单栏 ② 文件管理器 ③ 控制台 4. 在案例运行的过程中，点击白色的“停止”按钮，即可终止案例运 行。",
+    "figure": "knowledge/manuals/figures/ROBAN机器人使用入门-p20.png"
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 21,
+    "chars": 138,
+    "hasImages": true,
+    "preview": "21 5. 点击左上角的菜单按钮，可以进入“虚拟遥控器”功能。 6. 可以通过控制“虚拟遥控器”左右两个虚拟手柄，来控制机器人行 走。点击“监控模式”，即可看到机器人实时的头部画面回传。 ① 断开/连接机器人 ② 监控模式 ③ 虚拟手柄（L",
+    "figure": "knowledge/manuals/figures/ROBAN机器人使用入门-p21.png"
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 22,
+    "chars": 376,
+    "hasImages": true,
+    "preview": "22 7. 移动端Roban 软件的案例汇总如下： 文件名（中文） 文件名（英文） 描述 语音控制案例.py voice_control.py 展示机器人智能语义 识别功能 S 形曲线行走案 例.py walk_s_route.py 展示机",
+    "figure": null
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 23,
+    "chars": 435,
+    "hasImages": true,
+    "preview": "23 自平衡案例.py balance_board.py 机器人进入自平衡模 式，可以在自平衡平 台上保持平衡 退出自平衡.py balance_board_exit.py 演示自平衡案例后， 需要运行该案例退出 自平衡 BOTEC 演示关",
+    "figure": null
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 24,
+    "chars": 49,
+    "hasImages": true,
+    "preview": "24 ➢ 登录成功后可以看到机器人的系统桌面，即可远程操控机器人。 (八) VScode 远程连接",
+    "figure": "knowledge/manuals/figures/ROBAN机器人使用入门-p24.png"
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 25,
+    "chars": 188,
+    "hasImages": true,
+    "preview": "25 VSCode（Visual Studio Code）是一款由微软开发且跨平台的免费 源代码编辑器。安装下载VScode 软件并连接机器人的步骤如下： 1. 下载、安装VScode 软件 ：Download Visual Studio ",
+    "figure": null
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 26,
+    "chars": 193,
+    "hasImages": true,
+    "preview": "26 3. 安装完扩展后，点击vscode 窗口左下角的绿色小按钮，并在窗口 顶部的弹出栏中选择“Connect Current Window to Host”。 4. 在框中输入 ssh lemon@机器人IP，如：ssh lemon@1",
+    "figure": null
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 27,
+    "chars": 81,
+    "hasImages": true,
+    "preview": "27 7. 点击左侧工具栏的“资源管理器”，可打开当前远程连接的Linux 系 统的文件目录及文件，选择进入的文件目录，进入目录前会需要 再次输入远程连接的密码。",
+    "figure": "knowledge/manuals/figures/ROBAN机器人使用入门-p27.png"
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 28,
+    "chars": 135,
+    "hasImages": true,
+    "preview": "28 8. 进入到相应的目录中，便可以打开代码文件进行编辑。 (九) 官方网址链接 关于更进阶的参考内容请前往官方网站或论坛查阅相关资料。 官方网站：http://www.lejurobot.com/cn/ 官方论坛：https://bbs",
+    "figure": "knowledge/manuals/figures/ROBAN机器人使用入门-p28.png"
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 29,
+    "chars": 179,
+    "hasImages": true,
+    "preview": "29 四、 ROBAN 机器人案例教程 (一) 查看摄像头视频流 1. VNC 远程连接方法 （1） 启动机器人并使用VNC viewer 软件远程连接机器人。 （2） 机器人启动之后，按Ctrl+Alt+T，开启一个新终端，在新终端 输入",
+    "figure": null
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 30,
+    "chars": 214,
+    "hasImages": true,
+    "preview": "30 （4） 点击/chin_camera/下的“image”，可以看到下巴摄像头的画面： （5） 点击/camera/color/下的“image_raw”，可以看到深度视觉摄像头 的画面： 2. 同个WiFi 下的电脑查看方法 （1） ",
+    "figure": null
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 31,
+    "chars": 291,
+    "hasImages": true,
+    "preview": "31 （3） 打开任意浏览器软件，在网址栏输入该机器人的IP 和“:8080”， 例如：172.16.30.26:8080。点击回车，跳转页面。 (二) 执行机器人走路程序 1. VNC 远程连接方法 (1) 启动机器人并使用VNC vie",
+    "figure": null
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 32,
+    "chars": 169,
+    "hasImages": true,
+    "preview": "32 (3) 分别输入上述三行指令之后，机器人进入走路状态，此时，按 键盘的对应按键可以控制机器人行走。 (4) 在机器人行走过程中，请尽量确保机器人不发生摔倒，可以轻 微手提机器人脖子后部的提手。退出走路程序，则按“Q”键。 W：前进一步",
+    "figure": null
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 33,
+    "chars": 217,
+    "hasImages": true,
+    "preview": "33 2. VScode 远程连接方法 （1） 启动机器人并使用VScode 软件远程连接机器人 （2） 机器人启动之后，按Ctrl+Shift+`（Esc 键下面），开启一个新 终端，在新终端输入指令（一个$代表一行，无需输入$）： $ ",
+    "figure": null
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 34,
+    "chars": 169,
+    "hasImages": true,
+    "preview": "34 （3） 分别输入上述三行指令之后，机器人进入走路状态，此时，按 键盘的对应按键可以控制机器人行走。 （4） 在机器人行走过程中，请尽量确保机器人不发生摔倒，可以轻 微手提机器人脖子后部的提手。退出走路程序，则按“Q”键。 W：前进一步",
+    "figure": null
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 35,
+    "chars": 253,
+    "hasImages": true,
+    "preview": "35 (三) 执行机器人案例程序 1. VNC 远程连接方法 （1） 启动机器人并使用VNC viewer 软件远程连接机器人 （2） 机器人启动之后，按Ctrl+Alt+T，开启一个新终端，在新终 端输入指令（一个$代表一行，无需输入$）",
+    "figure": null
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 36,
+    "chars": 289,
+    "hasImages": true,
+    "preview": "36 （4） 输入对应案例的序号并回车，可以执行对应的案例。机器 人执行案例过程中，输入“666”即可终止案例；输入“999”即可退 出该程序。 2. VScode 远程连接方法 （1） 启动机器人并使用VScode 软件远程连接机器人 （",
+    "figure": null
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 37,
+    "chars": 102,
+    "hasImages": true,
+    "preview": "37 （3） 分别输入上述两行指令之后，机器人进入案例执行程序。 （4） 输入对应案例的序号并回车，可以执行对应的案例。机器人执 行案例过程中，输入“666”即可终止案例；输入“999”即可退出该程 序。",
+    "figure": "knowledge/manuals/figures/ROBAN机器人使用入门-p37.png"
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 38,
+    "chars": 158,
+    "hasImages": true,
+    "preview": "38 五、 Roban 电池使用维护教程 （一）不关机更换电池 即可以在不关机的情况下更换电池，为了在机器人开机状态下更 换电池，请严格遵循以下操作完成电池的更换。插上电源适配器给机 器人供电，取下电池，插入满电量电池，拔掉电源适配器。 1",
+    "figure": "knowledge/manuals/figures/ROBAN机器人使用入门-p38.png"
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 39,
+    "chars": 95,
+    "hasImages": true,
+    "preview": "39 3. 将满电量的电池插入电池槽内。 4. 装上电池盖，拧紧两颗螺丝固定。 （二）给电池充电 1. 接线介绍 ➢ 插上平衡充电器DC 输出线，需要注意插头方向，一面为斜面， 一面为平面。",
+    "figure": "knowledge/manuals/figures/ROBAN机器人使用入门-p39.png"
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 40,
+    "chars": 70,
+    "hasImages": true,
+    "preview": "40 ➢ 插上平衡充电器控制线。 ➢ 将平衡充电器控制线和DC 输出线分别插到充电底座接口。 ➢ 将AC 电源线插到电源适配器AC 接口内。",
+    "figure": "knowledge/manuals/figures/ROBAN机器人使用入门-p40.png"
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 41,
+    "chars": 72,
+    "hasImages": true,
+    "preview": "41 ➢ 将AC 电源线插头插到电源插座上，通电后电源适配器上蓝色 指示灯会亮起。 2. 参数设置 ➢ 平衡充电器界面介绍 ➢ 充电参数设置流程",
+    "figure": "knowledge/manuals/figures/ROBAN机器人使用入门-p41.png"
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 42,
+    "chars": 86,
+    "hasImages": true,
+    "preview": "42 3. 电池充电 ➢ 将电池插座和充电座插头插接在一起。 ➢ 插上AC 电源线、控制线和DC 输出线。 ➢ 设置完成后长按Enter 键，当界面变为图示界面时开始充电。",
+    "figure": "knowledge/manuals/figures/ROBAN机器人使用入门-p42.png"
+  },
+  {
+    "doc": "ROBAN机器人使用入门.pdf",
+    "slug": "ROBAN机器人使用入门",
+    "page": 43,
+    "chars": 80,
+    "hasImages": true,
+    "preview": "43 ➢ 电池充电中。 ➢ 充电完成：当电池充满时，平衡充电器会发出滴滴的提示音， 界面上显示充电完成提示“LiPo DONE”、本次充电时间和本次 充电电量。",
+    "figure": "knowledge/manuals/figures/ROBAN机器人使用入门-p43.png"
+  },
+  {
+    "doc": "RobanLab_Doctor_产品设计技术方案与研发计划_v2_修改版.pdf",
+    "slug": "RobanLab_Doctor_产品设计技术方案与研发计划_v2_修改版",
+    "page": 1,
+    "chars": 406,
+    "hasImages": true,
+    "preview": "智能交互机器人实验 · 期末大作业综合方案报告 RobanLab Doctor 智能交互机器人应用软件产品设计、技术方案与研发计划 Product Design, Technical Architecture & R&D Plan for ",
+    "figure": null
+  },
+  {
+    "doc": "RobanLab_Doctor_产品设计技术方案与研发计划_v2_修改版.pdf",
+    "slug": "RobanLab_Doctor_产品设计技术方案与研发计划_v2_修改版",
+    "page": 2,
+    "chars": 1421,
+    "hasImages": true,
+    "preview": "RobanLab Doctor | 智能交互机器人应用软件产品设计、技术方案与研发计划 第 2 页 / 共 11 页 摘 要 智能交互机器人实验课以 Roban 仿人机器人为教学平台，学生在机器人本机运行 Python 与 ROS 实验程 ",
+    "figure": null
+  },
+  {
+    "doc": "RobanLab_Doctor_产品设计技术方案与研发计划_v2_修改版.pdf",
+    "slug": "RobanLab_Doctor_产品设计技术方案与研发计划_v2_修改版",
+    "page": 3,
+    "chars": 920,
+    "hasImages": true,
+    "preview": "RobanLab Doctor | 智能交互机器人应用软件产品设计、技术方案与研发计划 第 3 页 / 共 11 页 用户角色 典型教学场景 核心诉求 课程助教 面对多台设备与重复性环境排查问题 借助一键自检与课程知识库复现排查链 路，沉淀",
+    "figure": null
+  },
+  {
+    "doc": "RobanLab_Doctor_产品设计技术方案与研发计划_v2_修改版.pdf",
+    "slug": "RobanLab_Doctor_产品设计技术方案与研发计划_v2_修改版",
+    "page": 4,
+    "chars": 1477,
+    "hasImages": true,
+    "preview": "RobanLab Doctor | 智能交互机器人应用软件产品设计、技术方案与研发计划 第 4 页 / 共 11 页 2.3.2 纯软件通用 Agent 排障与受控修复 面对纯软件故障，自检 Agent 针对用户指定的远端 Python 文",
+    "figure": null
+  },
+  {
+    "doc": "RobanLab_Doctor_产品设计技术方案与研发计划_v2_修改版.pdf",
+    "slug": "RobanLab_Doctor_产品设计技术方案与研发计划_v2_修改版",
+    "page": 5,
+    "chars": 1154,
+    "hasImages": true,
+    "preview": "RobanLab Doctor | 智能交互机器人应用软件产品设计、技术方案与研发计划 第 5 页 / 共 11 页 ▌ 2.6 Web 工作台核心页面规划 表 2-4 Web 工作台核心页面规划 页面名称 优先梯队 核心功能 连接与一键自",
+    "figure": null
+  },
+  {
+    "doc": "RobanLab_Doctor_产品设计技术方案与研发计划_v2_修改版.pdf",
+    "slug": "RobanLab_Doctor_产品设计技术方案与研发计划_v2_修改版",
+    "page": 6,
+    "chars": 642,
+    "hasImages": true,
+    "preview": "RobanLab Doctor | 智能交互机器人应用软件产品设计、技术方案与研发计划 第 6 页 / 共 11 页 生实验代码、既有 ROS 与 BodyHub 服务，以及轻量级只读探测脚本与受控运动执行器，两侧经 Paramiko SS",
+    "figure": null
+  },
+  {
+    "doc": "RobanLab_Doctor_产品设计技术方案与研发计划_v2_修改版.pdf",
+    "slug": "RobanLab_Doctor_产品设计技术方案与研发计划_v2_修改版",
+    "page": 7,
+    "chars": 1440,
+    "hasImages": true,
+    "preview": "RobanLab Doctor | 智能交互机器人应用软件产品设计、技术方案与研发计划 第 7 页 / 共 11 页 表 3-2 四层机器人诊断证据体系 证据层级 采集内容与接口来源 诊断职责 计划与指令层 标准用例轨迹或实验脚本发出的目标",
+    "figure": null
+  },
+  {
+    "doc": "RobanLab_Doctor_产品设计技术方案与研发计划_v2_修改版.pdf",
+    "slug": "RobanLab_Doctor_产品设计技术方案与研发计划_v2_修改版",
+    "page": 8,
+    "chars": 1478,
+    "hasImages": true,
+    "preview": "RobanLab Doctor | 智能交互机器人应用软件产品设计、技术方案与研发计划 第 8 页 / 共 11 页 表 3-4 多模块并发时的资源竞争及其表现 竞争资源 典型表现 对本项目的影响 CPU 时间片 Python 多线程受 G",
+    "figure": null
+  },
+  {
+    "doc": "RobanLab_Doctor_产品设计技术方案与研发计划_v2_修改版.pdf",
+    "slug": "RobanLab_Doctor_产品设计技术方案与研发计划_v2_修改版",
+    "page": 9,
+    "chars": 811,
+    "hasImages": true,
+    "preview": "RobanLab Doctor | 智能交互机器人应用软件产品设计、技术方案与研发计划 第 9 页 / 共 11 页 第四章 里程碑研发计划与验收交付 ▌ 4.1 细粒度子模块里程碑路线 研发计划以里程碑和可验收成果为节点组织，沿 M0 至",
+    "figure": null
+  },
+  {
+    "doc": "RobanLab_Doctor_产品设计技术方案与研发计划_v2_修改版.pdf",
+    "slug": "RobanLab_Doctor_产品设计技术方案与研发计划_v2_修改版",
+    "page": 10,
+    "chars": 1092,
+    "hasImages": true,
+    "preview": "RobanLab Doctor | 智能交互机器人应用软件产品设计、技术方案与研发计划 第 10 页 / 共 11 页 ▌ 4.2 小组成员分工规划 表 4-2 项目小组分工模板 职责模块 负责成员 核心工作内容 系统架构与诊断编排 苏积烨",
+    "figure": null
+  },
+  {
+    "doc": "RobanLab_Doctor_产品设计技术方案与研发计划_v2_修改版.pdf",
+    "slug": "RobanLab_Doctor_产品设计技术方案与研发计划_v2_修改版",
+    "page": 11,
+    "chars": 954,
+    "hasImages": true,
+    "preview": "RobanLab Doctor | 智能交互机器人应用软件产品设计、技术方案与研发计划 第 11 页 / 共 11 页 核心风险 工程应对措施 大模型幻觉与越权操作 排查主干与权限校验由代码写死，参数经网关复核，代码修 复与物理运动绑定人工",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 1,
+    "chars": 119,
+    "hasImages": true,
+    "preview": "1 Roban 教员培训手册 1、机器人开关机 第一步：开机前的准备工作。 1) 打开后背提手盖板，绑上提手带。 2) 将机器人悬挂至悬架上或机器人正面朝上平躺在平面上，使各 个舵机位置位于初始状态。机器人处于近似站立姿势，如下图 所示：",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p01.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 2,
+    "chars": 146,
+    "hasImages": true,
+    "preview": "2 第二步：给机器人通电。 方式一：用满电量的电池给机器人供电（供电之前请确保机器人 电源开关处于关闭状态） 1) 用十字螺丝刀拧开电池盖上的螺丝。 2) 将电池插到电池槽内，注意电池接口要和电池槽接口插接在一 起，装上电池盖后拧紧螺丝固定",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p02.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 3,
+    "chars": 192,
+    "hasImages": true,
+    "preview": "3 方式二：用（AC220V DC12V）电源适配器给机器人供电（此操 作仅给机器人供电，并不会给电池充电）。 1) 将AC 电源线的三插圆头插到适配器三插孔上，另一头三角插 头插到插座上。 2) 将电源适配器的DC 插头插到机器人背面的D",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 4,
+    "chars": 277,
+    "hasImages": true,
+    "preview": "4 第三步：等待机器人开机。 1) 上电后，机器人主机将会开机运行，大概需要40s 左右的等待 时间，全部舵机将会加锁，机器人姿态将逐步恢复到初始站立 姿态。 2) 下图所示的红色按键仅供紧急停止舵机时使用，当机器人舵机 处于加锁/运动状态",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 5,
+    "chars": 197,
+    "hasImages": true,
+    "preview": "5 2、机器人远程连接，ssh、vnc ssh 远程连接： 1) 下载、安装vscode ：https://code.visualstudio.com/ 2) 打开vscode 程序后在左侧找到“拓展”，安装remote-ssh 插 件。 ",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 6,
+    "chars": 92,
+    "hasImages": true,
+    "preview": "6 4) 在框中输入 ssh lemon@机器人 IP，如图所示 5) 选择 Linux 平台 6) 输入 ssh 连接密码。待左下角的小绿标更新成远程连接的IP 号即为远程连接成功。",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p06.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 7,
+    "chars": 108,
+    "hasImages": true,
+    "preview": "7 7) 点击左侧工具栏的“资源管理器”，可打开当前远程连接的 Linux 系统的文件目录及文件，选择进入的文件目录，进入目 录前会需要再次输入远程连接的密码。 8) 进入到相应的目录中，便可以打开代码文件进行编辑。",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p07.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 8,
+    "chars": 165,
+    "hasImages": true,
+    "preview": "8 vnc 远程连接： 1) 下载、安装vnc viewer ： https://www.realvnc.com/en/connect/download/viewer/ 2) 打开安装完的 vnc viewer ，输入机器人IP 地址，在弹",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 9,
+    "chars": 89,
+    "hasImages": true,
+    "preview": "9 3、机器人程序更新 1) 首先 ssh 或 vnc 远程连接上机器人，打开终端 2) 终端输入以下指令(根据正式版和内测版选择)： a) 更新到正式版： b) 更新到内测版：",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p09.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 10,
+    "chars": 193,
+    "hasImages": true,
+    "preview": "10 3) 敲击 “回车键” 进入更新选项，用键盘上的 “ ↑ ” 和 “ ↓ ” 移动高亮条，将高亮条移动到“更新Roban 程序”或“强制更 新Roban 程序”敲击 “回车键” 确认（测试应当使用强制更 新覆盖掉原有的不同分支的文件）",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 11,
+    "chars": 84,
+    "hasImages": true,
+    "preview": "11 6) 退出更新程序，随后即可开始测试工作。 4、机器人电池充电 第一点：接线介绍。 1) 插上平衡充电器DC 输出线，需要注意插头方向，一面为斜面， 一面为平面。",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p11.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 12,
+    "chars": 48,
+    "hasImages": true,
+    "preview": "12 2) 插上平衡充电器控制线。 3) 将平衡充电器控制线和DC 输出线分别插到充电底座接口。",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p12.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 13,
+    "chars": 91,
+    "hasImages": true,
+    "preview": "13 4) 将AC 电源线插到电源适配器AC 接口内。 5) 将AC 电源线插头插到电源插座上，通电后电源适配器上蓝色 指示灯会亮起。 第二点：参数设置。 1) 平衡充电器界面介绍。",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p13.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 14,
+    "chars": 70,
+    "hasImages": true,
+    "preview": "14 2) 充电参数设置流程。 第三点：电池充电。 1) 将电池插座和充电座插头插接在一起。 2) 插上AC 电源线、控制线和DC 输出线。",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p14.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 15,
+    "chars": 116,
+    "hasImages": true,
+    "preview": "15 3) 设置完成后长按Enter 键，当界面变为图示界面时开始充电。 4) 电池充电中。 5) 充电完成：当电池充满时，平衡充电器会发出滴滴的提示音， 界面上显示充电完成提示“LiPo DONE”、本次充电时间和本 次充电电量。",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p15.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 16,
+    "chars": 228,
+    "hasImages": true,
+    "preview": "16 5、无线同屏器的使用 1) 将信号接收器用HDMI 接入显示器、接通电源。 2) 将机器人开机，将信号发送器用HDMI 接入机器人。 6、镜像的重刷方法 1) 将 USB hub 集线器接在机器人的任一 USB 口。 2) 用HDMI",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 17,
+    "chars": 123,
+    "hasImages": true,
+    "preview": "17 6) 随后在“使用再生龙”中，选择第一项“使用再生龙”。 7) 随后选择第一项“硬盘/分区[存到/来自]镜像文件”。 8) 随后选择第一项“使用本机的分区（如：硬盘，随身盘）”。 9) 随后出现以下界面，插入镜像盘，按 Enter 键",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p17.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 18,
+    "chars": 118,
+    "hasImages": true,
+    "preview": "18 10) 随后出现以下界面，按 Ctrl + C 键继续。 11) 随后出现以下界面，选择第三项“Sdb1 …”。 12) 随后出现以下界面，按 Tab 键，选择“Done”继续。 13) 随后出现以下界面，按 Enter 键继续。",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p18.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 19,
+    "chars": 111,
+    "hasImages": true,
+    "preview": "19 14) 随后出现以下界面，选择第一项“Beginner 初学模式”确定。 15) 随后出现以下界面，选择第三项“restoredisk 还原镜像文件到 本机硬盘”确定。 16) 随后出现以下界面，选择最新的镜像文件。",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p19.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 20,
+    "chars": 123,
+    "hasImages": true,
+    "preview": "20 17) 随后出现以下界面，选择“确定”继续。 18) 随后出现以下界面，选择第二项“否，还原前略去检查”确定。 19) 随后出现以下界面，选择第三项“关机”确定。 20) 随后出现以下界面，按 Enter 键继续。 21) 输入“y”",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p20.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 21,
+    "chars": 119,
+    "hasImages": true,
+    "preview": "21 22) 再次输入“y”继续。 23) 等待设置完成，开机按“F2”进入如下画面，在“Advanced” 选项下，选择“Boot”选项。 24) 然后选择“Secure Boot”选项，将“Secure Boot”后面的“钩” 去掉。",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p21.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 22,
+    "chars": 129,
+    "hasImages": true,
+    "preview": "22 25) 随后选择“Power On”选项，将第一项的“After Power Failure” 改为“Power On”。 26) 最后按“F10”保存确认即可。 7、头部外壳及摄像头拆卸 1）头部外壳的拆卸 拆卸机器人头部外壳下的6",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p22.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 23,
+    "chars": 167,
+    "hasImages": true,
+    "preview": "23 2）下巴摄像头、深度摄像头线的插拔 打开Roban 后胸壳和头部外壳，找到对应的孔位插拔即可 8、舵机间隙以及结构件变形观察 舵机间隙：机器人开机后，双手放在机器人胸部左右两侧，将机 器人提起，观察机器人腿部是否晃动，或者手动掰动机器",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 24,
+    "chars": 385,
+    "hasImages": false,
+    "preview": "24 9、脚底问题检查和处理 1.打开ssh 远程连接，打开终端输入check 2.找到脚底压感测试，按下回车 3.按要求提起或放下机器人，终端打印红色即有问题，绿色即 正常 4.提起机器人时，终端数值应显示为0，将机器人放在水平地 面时，",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 25,
+    "chars": 241,
+    "hasImages": true,
+    "preview": "25 ➢ 3、8 号线，调整机器人脚底板至水平位置； ➢ 7 号线，调整机器人两条腿处于竖直位置，与 4、5、6、8 号线 垂直。 【注意】 ：设置零点之前，建议先将原始零点备份，拍照/截图记录 Roban 当前各个舵机 数值。 （调整机器",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 26,
+    "chars": 452,
+    "hasImages": false,
+    "preview": "26 4) face_tracking_2.py - 人脸追踪案例 5) stair_artag.py - 走楼梯案例 6) walk_s_route.py - 走S 曲线案例 7) say_yeah.py - 跳舞案例 8) 发现机器人点",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 27,
+    "chars": 260,
+    "hasImages": true,
+    "preview": "27 串口，连接机器人IP ◆ 第四步：点击菜单按钮“设置”，在弹出窗口中 点击“零点调试” ◆ 第五步：零点调试 ➢ Roban 机器人标准零点设置： ⚫ 1、4 号线，调整机器人头部舵机外壳至水平位置； ⚫ 5 号线，调整机器人手臂展开",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 28,
+    "chars": 266,
+    "hasImages": true,
+    "preview": "28 （调整机器人零点到标准状态） ➢ 动作设计 ⚫ 删除编辑区模块：通过鼠标左键长按拖拽至删除区， 删除多余模块。 ⚫ 指令栏：包含运动、认知、逻辑、变量、运算、列表、 文本、函数及库。 ⚫ 3D 模型窗口：3D 模型与连接的机器人所有舵",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 29,
+    "chars": 226,
+    "hasImages": true,
+    "preview": "29 ⚫ 选择插入帧的位置； ⚫ 然后点击软件界面右侧机器人模型，选择需要控制的 机器人关节部位； ⚫ 选择需要控制的舵机，拖动时间轴或输入码盘数值， 机器人相应位置舵机会发生转动； ⚫ 再点击确认按钮，当前这一帧的动作便会插入到动作 帧位",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 30,
+    "chars": 161,
+    "hasImages": true,
+    "preview": "30 ⚫ 点击“生成模块”，会将动作帧内容以模块化形式进 行封装； ⚫ 如图所示，为生成的动作模块 ⚫ 将生成的动作模块，放在开始程序内，点击“下载”； 程序下载成功后，机器人会自动“运行”程序 ⚫ 如图所示，为生成的动作模块 ⚫ 将生成的",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 31,
+    "chars": 180,
+    "hasImages": true,
+    "preview": "31 1、机器人舞蹈动作编辑设计的方法 ➢ 新建工程文件； ➢ 选择插入帧的位置； ➢ 然后点击软件界面右侧机器人模型，选择需要控制的机器人 关节部位； ➢ 选择需要控制的舵机，拖动时间轴或输入码盘数值，机器人 相应位置舵机会发 生转动； ",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 32,
+    "chars": 121,
+    "hasImages": true,
+    "preview": "32 ➢ 按同样的步骤，在开始帧和结束帧之间插入多个关键帧； ➢ 点击动作预览 “▶” 按钮，Roban 机器人会执行开始帧与结 束帧之间的动作指令； ➢ 点击“生成模块”，会将动作帧内容以模块化形式进行封装； ➢ 如图所示，为生成的动作模",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p32.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 33,
+    "chars": 140,
+    "hasImages": true,
+    "preview": "33 ➢ 将生成的动作模块，放在开始程序内，点击“下载”；程序 下载成功后，机器人会自动“运行”程序 13、机器人桌面端程序的下载及运行 下载链接：http://www.lejurobot.com/support-cn/ 1.打开roban",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p33.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 34,
+    "chars": 309,
+    "hasImages": false,
+    "preview": "34 3.导入动作模块，点击模块获取动作帧 4.菜单栏处：运行 -> 下载，即可下载动作 5.菜单栏处：运行 -> 运行，即可运行下载好的动作 14、楼梯案例的调试方法及注意事项 1) 准备工具 a) 螺丝刀：一套不同规格的内六角批头（内六",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 35,
+    "chars": 54,
+    "hasImages": true,
+    "preview": "35 ⚫ 将 JY901 传感器模块粘贴到如下图所示的位置，注意方向（如 果方向有误无法正确运行走楼梯案例）",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p35.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 36,
+    "chars": 80,
+    "hasImages": true,
+    "preview": "36 ⚫ 将 JY901 的 USB 接头与机器人背部的 USB 接口连接，启 动机器人后 USB 接头上的红色、蓝色指示灯均亮起，即完成 JY901 的连接。",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p36.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 37,
+    "chars": 465,
+    "hasImages": true,
+    "preview": "37 b) 添加机器人上楼梯零点 在机器人 ubuntu 系统终端（Terminal），输入以下指令： ⚫ rm ~/robot_ros_application/footstair/src/motion_interface/config/o",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 38,
+    "chars": 385,
+    "hasImages": true,
+    "preview": "38 修改 walking_n_steps([x, y, α ]) 函数的参数，x:向前后迈单步 长度(m) ，y:向左右迈单步的长度(m) ，α:旋转角度(°) ，n:步数 直到机器人可以正常转向 90°，面向另一侧的楼梯。 d) AR-",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 39,
+    "chars": 179,
+    "hasImages": true,
+    "preview": "39 ⚫ rosrun ros_actions_node stair_convert_artag.py debug 终端二显示如下指令： 3) 测试及演示楼梯案例 a) 启动机器人，将机器人放置在楼梯第一级台阶上 b) 通过 Roban 机",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 40,
+    "chars": 487,
+    "hasImages": false,
+    "preview": "40 4) JY901 配置说明 注意：大多数情况下，用于演示的 JY901 外置陀螺仪是已经完 成配置的。如果调试过程中，上述步骤均已经完成调试，依旧 不能成功完成走楼梯案例演示，需要检查 JY901 是否完成配置， 步骤如下： a) 在",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 41,
+    "chars": 95,
+    "hasImages": true,
+    "preview": "41 4. 将 Jy901 通过 USB 连接到电脑上，软件会自动读取当前的 X、Y、Z 值；点击下图所示「打开」按钮， X、Y、Z 值会随 陀螺仪运动变化，说明连接正常 5. 配置相关参数",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p41.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 42,
+    "chars": 165,
+    "hasImages": true,
+    "preview": "42 o 点击菜单栏中的「配置」按钮 o 在打开的「Normal-Config」窗口，按照以下步骤完成 JY901 的配置： ① 确认 JY901 是否在线 ② 通讯速率 设置为 115200 ③ 固传速率 设置为 200HZ ④ 注意：其",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 43,
+    "chars": 59,
+    "hasImages": true,
+    "preview": "43 15、edrawings 软件的安装及使用方法 https://www.edrawingsviewer.com/",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p43.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 44,
+    "chars": 20,
+    "hasImages": true,
+    "preview": "44 下载速度较慢，建议提前下载好安装包",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p44.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 45,
+    "chars": 2,
+    "hasImages": true,
+    "preview": "45",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p45.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 46,
+    "chars": 2,
+    "hasImages": true,
+    "preview": "46",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p46.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 47,
+    "chars": 30,
+    "hasImages": true,
+    "preview": "47 模型图1.x_t 打开上面模型图例子即可查看，编辑模型",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p47.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 48,
+    "chars": 184,
+    "hasImages": true,
+    "preview": "48 16、楼梯的组装和验收标准 检查楼梯 d) 检查楼梯结构是否松动：楼梯安装完成后，确认楼梯各部分结 构安装稳固无松动，如果有松动需要使用螺丝刀拧紧。 e) 水平仪水平、倾斜状态描述：将水平仪平稳放置在待测物体表 面，当水平仪中的气泡不",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 49,
+    "chars": 101,
+    "hasImages": true,
+    "preview": "49 ⚫ 如果水平仪中的气泡不在接近中心的位置，被测的表面为倾斜， 如下图所示： f) 检查楼梯是否水平：将水平仪放置在下图红色标注的 7 个位 置，测量结果均为水平，可以判断当前楼梯安装在水平地面上。",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p49.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 50,
+    "chars": 104,
+    "hasImages": true,
+    "preview": "50 g) 检查第 1、2 阶段连接处是否平整：将水平仪放置在下图红色 标注的位置上，按照图示方向移动水平仪位置多次测量，测量 结果均为水平，可以判断第 1、2 阶段连接处平整，机器人行 走过程中不会被绊倒。",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p50.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 51,
+    "chars": 296,
+    "hasImages": true,
+    "preview": "51 17、机器人slam 建图的方法及注意事项 1) SLAM 建图与标点 建图： a) 在VS Code 启动机器人运动控制脚本： cd ~/robot_ros_application/scripts/ sudo -S bash bod",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 52,
+    "chars": 492,
+    "hasImages": true,
+    "preview": "52 c) 在VNC 中打开新终端，以这个为基准开始建图：建图时为 了让机器人更好的建图，让机器人低头10 度，这里使用比 赛程序，输入参数debug，执行比赛程序的脚本： cd ~/robot_ros_application/catkin",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 53,
+    "chars": 666,
+    "hasImages": false,
+    "preview": "53 多绿色的点是图的特征点，可将机器人轻微抬起，移动合适的距离再 放下机器人，在移动时尽量慢一点，因为图是连续的，是基于视频图 像定位，移动的太快可能会丢失特征点，待图像回传中出现较多特征 点（绿色点），即可将机器人移动至下一建图点位。在",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 54,
+    "chars": 184,
+    "hasImages": true,
+    "preview": "54 路径标点： a) 在VS Code 中启动机器人运动控制脚本： cd ~/robot_ros_application/scripts/ sudo -S bash bodyhub.sh b) 在VNC Viewer 终端中启动SLAM ",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 55,
+    "chars": 481,
+    "hasImages": true,
+    "preview": "55 c) 在VS Code 中打开终端，执行比赛程序的脚本： cd ~/robot_ros_application/catkin_ws/ source devel/setup.bash rosrun roban_challenge_sla",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 56,
+    "chars": 122,
+    "hasImages": true,
+    "preview": "56 机器人标完点后，把机器人放到初始位置，在编程界面删掉debug 然后运行程序，机器人会按照标点的路径行走，如未能完成任务或者 机器人行走有偏差需继续调节标点，进行修正。 任务3 路径1 的点1、2、3 是指从第二关终点走到1、2、3 ",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p56.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 57,
+    "chars": 571,
+    "hasImages": true,
+    "preview": "57 块。 路径2 的点1 是指拿到能量块转身然后放到能量块放置区。 路径1 有两个点分别是靠近能量块和能量块正前方 建好图如果周围的围挡发生变化，需要重新建图。 18 人工智能大赛跑通的全流程 一、场地介绍 比赛场地面积 3.6 * 4.",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 58,
+    "chars": 221,
+    "hasImages": true,
+    "preview": "58 二、程序拉取 然后根据更新程序文档 /home/lemon/robot_ros_application/scripts/sys_update/README.md 进行更新。 比赛源码目录： /home/lemon/robot_ros_",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 59,
+    "chars": 517,
+    "hasImages": true,
+    "preview": "59 三、运行流程 roban_challenge_main.py 导入单独关卡文件中的 Task_关卡名 类后，RaceNode 通过多 重继承将需要的关卡的 start_关卡名 函数继承，然后在类函数 start() 中进行调用即可依次",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 60,
+    "chars": 253,
+    "hasImages": true,
+    "preview": "60 命令输出如上图所示，可能会比上图显示的结果多，要保证的是 BodyHubNode 、 /camera/realsense2_camera 和 /camera/realsense2_camera_manager 存在即可。 若没有 bo",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 61,
+    "chars": 117,
+    "hasImages": true,
+    "preview": "61 #source 命令在下文中很多地方都需要，这是 ros 的环境变量配置，不执行将找不到项 目中的 ros 包，下文中在执行 rosrun 之前和打开新终端的时候请自行执行该句，不再提 示。 启动后可以在屏幕中看到两个显示窗口。",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p61.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 62,
+    "chars": 435,
+    "hasImages": true,
+    "preview": "62 左侧为相机图像，右侧为实时 slam 特征点和关键帧的点云图。 在 RGB 图片中，紫色的点代表原来地图上已经有的关键点，绿色的点代表重新识别出 来的关键点。在点云图中，绿色的方框代表当前位置，红色的点云代表当前 RGB 图像在 点 ",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 63,
+    "chars": 2,
+    "hasImages": true,
+    "preview": "63",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p63.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 64,
+    "chars": 184,
+    "hasImages": true,
+    "preview": "64 出现双重墙时也不要慌，如果不想重新建图，可以尽快将机器人的摄像头移动到此前可 以正确定位的位置，然后再缓慢地移动到出现双重墙的位置，让建图算法识别出闭环更新地 图。 建图完成后直接 ctrl+c 停止建图并保存地图，地图应当适当备份，",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 65,
+    "chars": 2,
+    "hasImages": true,
+    "preview": "65",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p65.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 66,
+    "chars": 93,
+    "hasImages": true,
+    "preview": "66 如上图所示，打开 slam 位置输出后，将机器人分别移动到途中的 1234 中，打开 slam_identify_num.yaml 文件，将终端输出的位置分别填入对应位置的字段中。",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p66.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 67,
+    "chars": 79,
+    "hasImages": true,
+    "preview": "67 将机器人分别放于上图中的 12345 点，然后打开 slam_path_tracking.yaml 文件，依次将 终端输出的点位填入，也可以自行增删点。",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p67.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 68,
+    "chars": 465,
+    "hasImages": true,
+    "preview": "68 如上图所示第三关需要标记 4 个点，打开 slam_carry_box.yaml 文件，把机器人放于上 图中的 1,box_n 四个点，1 点为搬运的原点和目的点，标记 box_n 前的点时需要避免离桌 子 太近(保持 3-4cm)，",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 69,
+    "chars": 494,
+    "hasImages": true,
+    "preview": "69 ①第一关运行流程 以下文件夹的路径没有说明都是基于比赛项目源码的路径，每次启动终端运行关卡都 要 source 工作空间。 单独运行第一关时使用： 高校比赛第一关是识别出四个数字的在四个备选位置中的位置关系然后依次走过去。数 字识别使",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 70,
+    "chars": 335,
+    "hasImages": true,
+    "preview": "70 显示 opencv 处理后的图像 其中：（按照图像处理的先后顺序排序，依次由先到后） origin_img 是原相机的图像。 perspective_img 是透视变换后的图像，如果数字没有看全需要修改透视变换的图像坐 标，在 Tas",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 71,
+    "chars": 2,
+    "hasImages": true,
+    "preview": "71",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p71.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 72,
+    "chars": 2,
+    "hasImages": true,
+    "preview": "72",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p72.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 73,
+    "chars": 206,
+    "hasImages": true,
+    "preview": "73 model_img_resized 是匹配结果图像，在图像中会依次按照 1、2、3、4 用黑框在图中 框出识别的结果，如果存在未框中的数字，应该考虑修改模板图片的大小。模板图片大小和 黑框一致，修改大小的数值在 Task_identi",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 74,
+    "chars": 282,
+    "hasImages": true,
+    "preview": "74 如果仍不能识别，应考虑更换 number_img 目录下的模板图片（一般不用更换），模板图 片可以从灰度图像获取，截取数字矩形区域作为模板，然后替换掉 college/image 里面的对 应 的图片模板即可。 另外，由于机器人往前看",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 75,
+    "chars": 497,
+    "hasImages": true,
+    "preview": "75 第二关代码的主要结构与第一关类似，不再赘述。关卡实现是直接调用 path_tracking 函 数，然后传入标记的路径点即可，需要注意的是 path_tracking 函数的参数，比如是否忽略 角 度，终点位置误差，以及等待 slam",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 76,
+    "chars": 161,
+    "hasImages": true,
+    "preview": "76 生成步骤如下: 1. 打开 roban 软件，连接机器人 2. 在上方时间轴区域设置时间范围,以 100f 为 1s,然后在第一帧处右键>>插入关键帧>> 设置全身关键帧。 3. 然后同样地在所需要的下一个动作点的时间(100f 为 ",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 77,
+    "chars": 34,
+    "hasImages": true,
+    "preview": "77 4. 设置完所有动作关键帧后，点击左侧的菜单图标选择生成模块。",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p77.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 78,
+    "chars": 73,
+    "hasImages": true,
+    "preview": "78 5. 在中间的图形化编程区将生成的模块拖入到开始中即可点击菜单中的代码选项复制 出生成的动作帧到 frames.py 文件中的相应位置使用。",
+    "figure": "knowledge/manuals/figures/Roban_教员培训手册_20220111-p78.png"
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 79,
+    "chars": 194,
+    "hasImages": true,
+    "preview": "79 19、人工智能大赛程序调试、运行过程中的常见问题处理 程序脚本路径及运行 d) 脚本路径： ① bodyhub.sh 运动控制启动脚本，启动步态及运动控制功能 /robot_ros_application/scripts/bodyhu",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 80,
+    "chars": 637,
+    "hasImages": false,
+    "preview": "80 ~/robot_ros_application/catkin_ws/src/caai_roban_challeng e/run_slam.sh 路径下，需要将该脚本复制到 ~/robot_ros_application/slam 路径",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 81,
+    "chars": 508,
+    "hasImages": false,
+    "preview": "81 rosrun roban_challenge_slam roban_challenge.py debug f) 标点脚本运行： 终端1： cd ~/robot_ros_application/scripts/ sudo -S bash",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 82,
+    "chars": 471,
+    "hasImages": false,
+    "preview": "82 rosrun roban_challenge_slam roban_challenge.py 常见问题处理 Q：出现 no module name xxxxeg:No module named mediumsize_msgs.srv ",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 83,
+    "chars": 477,
+    "hasImages": true,
+    "preview": "83 a) 主程序部分可以接收一个输入参数“debug”： ① rosrun roban_challenge_slam roban_challenge.py 执行正常比赛程序。 ② rosrun roban_challenge_slam r",
+    "figure": null
+  },
+  {
+    "doc": "Roban_教员培训手册_20220111.pdf",
+    "slug": "Roban_教员培训手册_20220111",
+    "page": 84,
+    "chars": 173,
+    "hasImages": true,
+    "preview": "84 第二个参数给定一个搬运路径； self.bodyhub.walking_n_steps()控制机器人走一段固定路径， 第一个参数控制单步步长，第二个参数控制机器人走几步。 d) self.path_tracking()的参数，列表中包",
+    "figure": null
+  },
+  {
+    "doc": "Roban开机无法自动进入系统(1).pdf",
+    "slug": "Roban开机无法自动进入系统-1-",
+    "page": 1,
+    "chars": 223,
+    "hasImages": true,
+    "preview": "start.md 2024-12-17 1 / 1 故障现象： Roban开机后无法自动进入系统，需要连接鼠标，键盘，显示器电机login才能进入。 ##解决方案： 终端输入指令 sudo nano /etc/lightdm/lightdm",
+    "figure": null
+  },
+  {
+    "doc": "Roban拆机培训.pdf",
+    "slug": "Roban拆机培训",
+    "page": 1,
+    "chars": 26,
+    "hasImages": true,
+    "preview": "Roabn 拆机培训 1. 首先拆开机器人背后的后壳",
+    "figure": "knowledge/manuals/figures/Roban拆机培训-p01.png"
+  },
+  {
+    "doc": "Roban拆机培训.pdf",
+    "slug": "Roban拆机培训",
+    "page": 2,
+    "chars": 56,
+    "hasImages": true,
+    "preview": "2.拆开螺丝后，后壳即可打开。首先拆下机器人的电源充电接口与开关键，红色 黑色分别代表电源的正负极，以及数据线。",
+    "figure": "knowledge/manuals/figures/Roban拆机培训-p02.png"
+  },
+  {
+    "doc": "Roban拆机培训.pdf",
+    "slug": "Roban拆机培训",
+    "page": 3,
+    "chars": 28,
+    "hasImages": true,
+    "preview": "3.拆开机器人自定义快捷按钮，蓝色的为数据线来传输数据。",
+    "figure": "knowledge/manuals/figures/Roban拆机培训-p03.png"
+  },
+  {
+    "doc": "Roban拆机培训.pdf",
+    "slug": "Roban拆机培训",
+    "page": 4,
+    "chars": 25,
+    "hasImages": true,
+    "preview": "4.这一部分为机器人的发声音响，拆除以下两个螺丝。",
+    "figure": "knowledge/manuals/figures/Roban拆机培训-p04.png"
+  },
+  {
+    "doc": "Roban拆机培训.pdf",
+    "slug": "Roban拆机培训",
+    "page": 5,
+    "chars": 32,
+    "hasImages": true,
+    "preview": "5. 前胸装置包括显示灯，胸前传感器，都是由一条数据线进行链接。",
+    "figure": "knowledge/manuals/figures/Roban拆机培训-p05.png"
+  },
+  {
+    "doc": "Roban拆机培训.pdf",
+    "slug": "Roban拆机培训",
+    "page": 6,
+    "chars": 28,
+    "hasImages": true,
+    "preview": "6. 下面拆除头部，拆除头部螺丝，拆除之后即可打开头部。",
+    "figure": "knowledge/manuals/figures/Roban拆机培训-p06.png"
+  },
+  {
+    "doc": "Roban拆机培训.pdf",
+    "slug": "Roban拆机培训",
+    "page": 7,
+    "chars": 36,
+    "hasImages": true,
+    "preview": "7. 六麦克风阵列，分别由六个麦克风链接组成，由一个数据线进行传输数据。",
+    "figure": "knowledge/manuals/figures/Roban拆机培训-p07.png"
+  },
+  {
+    "doc": "Roban拆机培训.pdf",
+    "slug": "Roban拆机培训",
+    "page": 8,
+    "chars": 76,
+    "hasImages": true,
+    "preview": "8. 机器人深度视觉摄像头，深度摄像头是一种能够感知场景深度信息的相机， 比如可以将图像降维，升维，图像色度亮度进行处理。也是通过一个数据线进行 连接。",
+    "figure": "knowledge/manuals/figures/Roban拆机培训-p08.png"
+  },
+  {
+    "doc": "Roban拆机培训.pdf",
+    "slug": "Roban拆机培训",
+    "page": 9,
+    "chars": 29,
+    "hasImages": true,
+    "preview": "9. 线面来拆除腿部舵机的以下外部螺丝，然后拆除内部螺丝。",
+    "figure": "knowledge/manuals/figures/Roban拆机培训-p09.png"
+  },
+  {
+    "doc": "Roban拆机培训.pdf",
+    "slug": "Roban拆机培训",
+    "page": 10,
+    "chars": 12,
+    "hasImages": true,
+    "preview": "10.拆除跨部四个螺丝。",
+    "figure": "knowledge/manuals/figures/Roban拆机培训-p10.png"
+  },
+  {
+    "doc": "Roban拆机培训.pdf",
+    "slug": "Roban拆机培训",
+    "page": 11,
+    "chars": 18,
+    "hasImages": true,
+    "preview": "11.腿部螺丝拆除之后拆除脚部螺丝。",
+    "figure": "knowledge/manuals/figures/Roban拆机培训-p11.png"
+  },
+  {
+    "doc": "Roban拆机培训.pdf",
+    "slug": "Roban拆机培训",
+    "page": 12,
+    "chars": 10,
+    "hasImages": true,
+    "preview": "12.拆除脚腕螺丝。",
+    "figure": "knowledge/manuals/figures/Roban拆机培训-p12.png"
+  },
+  {
+    "doc": "Roban拆机培训.pdf",
+    "slug": "Roban拆机培训",
+    "page": 13,
+    "chars": 24,
+    "hasImages": true,
+    "preview": "13.脚部舵机的数据线拆除，即可拆掉机器人的脚。",
+    "figure": "knowledge/manuals/figures/Roban拆机培训-p13.png"
+  },
+  {
+    "doc": "Roban拆机培训.pdf",
+    "slug": "Roban拆机培训",
+    "page": 14,
+    "chars": 37,
+    "hasImages": true,
+    "preview": "14.打开脚步外壳，里面有四个螺丝，拆除之后即可看到压力传感器与脚部舵机。",
+    "figure": "knowledge/manuals/figures/Roban拆机培训-p14.png"
+  },
+  {
+    "doc": "Roban拆机培训.pdf",
+    "slug": "Roban拆机培训",
+    "page": 15,
+    "chars": 22,
+    "hasImages": true,
+    "preview": "15.脚腕舵机拆卸，拆掉固定舵机的五个螺丝。",
+    "figure": "knowledge/manuals/figures/Roban拆机培训-p15.png"
+  },
+  {
+    "doc": "Roban拆机培训.pdf",
+    "slug": "Roban拆机培训",
+    "page": 16,
+    "chars": 23,
+    "hasImages": true,
+    "preview": "16.拆掉多级传输的数据线，即可拆下舵机更换。",
+    "figure": "knowledge/manuals/figures/Roban拆机培训-p16.png"
+  },
+  {
+    "doc": "Roban拆机培训.pdf",
+    "slug": "Roban拆机培训",
+    "page": 17,
+    "chars": 16,
+    "hasImages": true,
+    "preview": "17.首先拆除胳膊外壳上的螺丝。",
+    "figure": "knowledge/manuals/figures/Roban拆机培训-p17.png"
+  },
+  {
+    "doc": "Roban拆机培训.pdf",
+    "slug": "Roban拆机培训",
+    "page": 18,
+    "chars": 12,
+    "hasImages": true,
+    "preview": "18.拆除胳膊内部螺丝。",
+    "figure": "knowledge/manuals/figures/Roban拆机培训-p18.png"
+  },
+  {
+    "doc": "Roban拆机培训.pdf",
+    "slug": "Roban拆机培训",
+    "page": 19,
+    "chars": 17,
+    "hasImages": true,
+    "preview": "20.机器人手部舵机固定螺丝拆除。",
+    "figure": "knowledge/manuals/figures/Roban拆机培训-p19.png"
+  },
+  {
+    "doc": "Roban拆机培训.pdf",
+    "slug": "Roban拆机培训",
+    "page": 20,
+    "chars": 12,
+    "hasImages": true,
+    "preview": "21.机器人的手抓拆除。",
+    "figure": "knowledge/manuals/figures/Roban拆机培训-p20.png"
+  },
+  {
+    "doc": "Roban拆机培训.pdf",
+    "slug": "Roban拆机培训",
+    "page": 21,
+    "chars": 10,
+    "hasImages": true,
+    "preview": "22.舵机螺丝拆除。",
+    "figure": "knowledge/manuals/figures/Roban拆机培训-p21.png"
+  },
+  {
+    "doc": "Roban拆机培训.pdf",
+    "slug": "Roban拆机培训",
+    "page": 22,
+    "chars": 19,
+    "hasImages": true,
+    "preview": "23.打开舵机即可拆下舵机数据传输线。",
+    "figure": "knowledge/manuals/figures/Roban拆机培训-p22.png"
+  },
+  {
+    "doc": "Roban拆机培训.pdf",
+    "slug": "Roban拆机培训",
+    "page": 23,
+    "chars": 10,
+    "hasImages": true,
+    "preview": "24.舵机内部结构。",
+    "figure": "knowledge/manuals/figures/Roban拆机培训-p23.png"
+  },
+  {
+    "doc": "Roban拆机培训.pdf",
+    "slug": "Roban拆机培训",
+    "page": 24,
+    "chars": 0,
+    "hasImages": true,
+    "preview": "",
+    "figure": "knowledge/manuals/figures/Roban拆机培训-p24.png"
+  },
+  {
+    "doc": "Roban机器人版本查询手册.pdf",
+    "slug": "Roban机器人版本查询手册",
+    "page": 1,
+    "chars": 199,
+    "hasImages": true,
+    "preview": "3 / 3 Roban机器人在线刷新镜像手册（Roban) 一、查询机器人代码版本 · 使用vnc或者接上屏幕连接上机器人进入到桌面中 · 桌面右键选择New Terminal启动终端 · 在终端上终端输入： cd robot_ros_ap",
+    "figure": null
+  },
+  {
+    "doc": "Roban机器人版本查询手册.pdf",
+    "slug": "Roban机器人版本查询手册",
+    "page": 2,
+    "chars": 114,
+    "hasImages": true,
+    "preview": "3 / 3 二、查看Roban版本 同样的在终端下输入lsb_release -a， Description显示Ubuntu16.04则为Roban1.0； Description显示Ubuntu20.04则为Roban2.0；",
+    "figure": "knowledge/manuals/figures/Roban机器人版本查询手册-p02.png"
+  },
+  {
+    "doc": "Roban机器人离线镜像刷新手册.pdf",
+    "slug": "Roban机器人离线镜像刷新手册",
+    "page": 1,
+    "chars": 109,
+    "hasImages": true,
+    "preview": "1 Roban机器人离线镜像刷新手册 提前准备工作 1）准备好一个再生龙启动U盘； 2）保存好机器人零点参数； 刷新镜像步骤步骤： 1.插入再生龙启动盘，开机后按F11 ，进入如下界面：选择第一项 2.随后选择简体中文",
+    "figure": "knowledge/manuals/figures/Roban机器人离线镜像刷新手册-p01.png"
+  },
+  {
+    "doc": "Roban机器人离线镜像刷新手册.pdf",
+    "slug": "Roban机器人离线镜像刷新手册",
+    "page": 2,
+    "chars": 35,
+    "hasImages": true,
+    "preview": "2 3.然后选择第一项使用默认的键盘配置 4.然后选择第一项使用再生龙",
+    "figure": "knowledge/manuals/figures/Roban机器人离线镜像刷新手册-p02.png"
+  },
+  {
+    "doc": "Roban机器人离线镜像刷新手册.pdf",
+    "slug": "Roban机器人离线镜像刷新手册",
+    "page": 3,
+    "chars": 44,
+    "hasImages": true,
+    "preview": "3 5.随后选择第一项硬盘/分区(存到/来自)镜像文件 6.然后选择第一项使用本机的分区",
+    "figure": "knowledge/manuals/figures/Roban机器人离线镜像刷新手册-p03.png"
+  },
+  {
+    "doc": "Roban机器人离线镜像刷新手册.pdf",
+    "slug": "Roban机器人离线镜像刷新手册",
+    "page": 4,
+    "chars": 45,
+    "hasImages": true,
+    "preview": "4 7.随后出现如下界面，插入镜像盘，按Enter键继续 8.然后按Ctrl + c 继续",
+    "figure": "knowledge/manuals/figures/Roban机器人离线镜像刷新手册-p04.png"
+  },
+  {
+    "doc": "Roban机器人离线镜像刷新手册.pdf",
+    "slug": "Roban机器人离线镜像刷新手册",
+    "page": 5,
+    "chars": 34,
+    "hasImages": true,
+    "preview": "5 9.随后选择第三项，继续 10.然后按Tab键选择Done 继续",
+    "figure": "knowledge/manuals/figures/Roban机器人离线镜像刷新手册-p05.png"
+  },
+  {
+    "doc": "Roban机器人离线镜像刷新手册.pdf",
+    "slug": "Roban机器人离线镜像刷新手册",
+    "page": 6,
+    "chars": 32,
+    "hasImages": true,
+    "preview": "6 11.随后按Enter键继续 12.然后选择第一项初学者模式",
+    "figure": "knowledge/manuals/figures/Roban机器人离线镜像刷新手册-p06.png"
+  },
+  {
+    "doc": "Roban机器人离线镜像刷新手册.pdf",
+    "slug": "Roban机器人离线镜像刷新手册",
+    "page": 7,
+    "chars": 38,
+    "hasImages": true,
+    "preview": "7 13.随后选择第三项还原镜像文件到本机硬盘 14.然后选择最新的镜像文件",
+    "figure": "knowledge/manuals/figures/Roban机器人离线镜像刷新手册-p07.png"
+  },
+  {
+    "doc": "Roban机器人离线镜像刷新手册.pdf",
+    "slug": "Roban机器人离线镜像刷新手册",
+    "page": 8,
+    "chars": 33,
+    "hasImages": true,
+    "preview": "8 15.随后选择确定继续 16.然后选择第二项还原前略去检查继续",
+    "figure": "knowledge/manuals/figures/Roban机器人离线镜像刷新手册-p08.png"
+  },
+  {
+    "doc": "Roban机器人离线镜像刷新手册.pdf",
+    "slug": "Roban机器人离线镜像刷新手册",
+    "page": 9,
+    "chars": 31,
+    "hasImages": true,
+    "preview": "9 17.随后选择第三项关机继续 18.然后按Enter键继续",
+    "figure": "knowledge/manuals/figures/Roban机器人离线镜像刷新手册-p09.png"
+  },
+  {
+    "doc": "Roban机器人离线镜像刷新手册.pdf",
+    "slug": "Roban机器人离线镜像刷新手册",
+    "page": 10,
+    "chars": 38,
+    "hasImages": true,
+    "preview": "10 19.输入y 继续 20.继续输入y 继续 等待完成即可 bios设置",
+    "figure": "knowledge/manuals/figures/Roban机器人离线镜像刷新手册-p10.png"
+  },
+  {
+    "doc": "Roban机器人离线镜像刷新手册.pdf",
+    "slug": "Roban机器人离线镜像刷新手册",
+    "page": 11,
+    "chars": 85,
+    "hasImages": true,
+    "preview": "11 1.开机按F2 进入如下画面：在Advanced 选项下面，选择Boot 选项 2.然后选择Secure Boot 选项，将Secure Boot 后面的‘钩’去掉",
+    "figure": "knowledge/manuals/figures/Roban机器人离线镜像刷新手册-p11.png"
+  },
+  {
+    "doc": "Roban机器人离线镜像刷新手册.pdf",
+    "slug": "Roban机器人离线镜像刷新手册",
+    "page": 12,
+    "chars": 72,
+    "hasImages": true,
+    "preview": "12 3.随后选择Power 选项，将第一项的After Power Failure 改为：\"Power On\" 4.最后按F10 保存确认即可",
+    "figure": "knowledge/manuals/figures/Roban机器人离线镜像刷新手册-p12.png"
+  },
+  {
+    "doc": "Roban机器人自检手册.pdf",
+    "slug": "Roban机器人自检手册",
+    "page": 1,
+    "chars": 127,
+    "hasImages": true,
+    "preview": "Roban机器人自检手册 一、启动自检程序 · 使用vnc或者接上屏幕连接上机器人进入到桌面中 · 桌面右键选择New Terminal启动终端 · 在终端下输入check+回车： · 进入自检程序后依次选择编号查看是否有报错，有报错可以先",
+    "figure": "knowledge/manuals/figures/Roban机器人自检手册-p01.png"
+  },
+  {
+    "doc": "Roban机器人自检手册.pdf",
+    "slug": "Roban机器人自检手册",
+    "page": 2,
+    "chars": 68,
+    "hasImages": true,
+    "preview": "二、查看终端报错 · 在终端上启动./start.sh或者开机查看终端是否有红字报错，例如： 翻看终端，看到有红字报错就截图下来进行反馈",
+    "figure": "knowledge/manuals/figures/Roban机器人自检手册-p02.png"
+  },
+  {
+    "doc": "Roban查零点步骤.pdf",
+    "slug": "Roban查零点步骤",
+    "page": 1,
+    "chars": 187,
+    "hasImages": true,
+    "preview": "1 / 1 · Roban查零点步骤 1. 鼠标右键左侧状态栏新建终端 2. 输入以下命令进入到lejuconfig路径下 cd ~/.lejuconfig 3. 继续在该路径下输入sudo gedit offset.yaml 4. 回车输",
+    "figure": null
+  },
+  {
+    "doc": "Roban零点调试(1).pdf",
+    "slug": "Roban零点调试-1-",
+    "page": 1,
+    "chars": 237,
+    "hasImages": true,
+    "preview": "1. 连接机器人、零点调试 ➢第一步：打开PC 端“Roban”上位机软件 ➢第二步：新建Roban 工程文件；机器人开机，等待系统完全启动➢第三步： 电脑与机器人在同 一无线局域网，点击串口，连接机器 人IP ➢第四步：点击菜单按钮“设置",
+    "figure": null
+  },
+  {
+    "doc": "Roban零点调试(1).pdf",
+    "slug": "Roban零点调试-1-",
+    "page": 2,
+    "chars": 123,
+    "hasImages": true,
+    "preview": "➢3、8 号线，调整机器人脚底板至水平位置； ➢7 号线，调整机器人两条腿处于竖直位置，与4、5、6、8 号线 垂直。 【注意】 ：设置零点之前，建议先将原始零点备份，拍照/截图记录 Roban 当前各个舵机 数值。 （调整机器人零点到标准",
+    "figure": "knowledge/manuals/figures/Roban零点调试-1--p02.png"
+  },
+  {
+    "doc": "Roban零点调试(1).pdf",
+    "slug": "Roban零点调试-1-",
+    "page": 3,
+    "chars": 360,
+    "hasImages": true,
+    "preview": "Roban腿部零点调试 一、零点数值与舵机方向 7号：往右转（减数值），往左转（加数值）1号：往右转（减数值），往左转（加数值） 8号：往右移（加数值），往左移（减数值）2号：往右移（加数值），往左移（减数值） 9号：往前移（减数值），往后",
+    "figure": null
+  },
+  {
+    "doc": "Roban零点调试(1).pdf",
+    "slug": "Roban零点调试-1-",
+    "page": 4,
+    "chars": 34,
+    "hasImages": true,
+    "preview": "3、再调试9号和3号、10号和4号，调至从侧面看机器人腿部为重叠状态",
+    "figure": "knowledge/manuals/figures/Roban零点调试-1--p04.png"
+  },
+  {
+    "doc": "Roban零点调试(1).pdf",
+    "slug": "Roban零点调试-1-",
+    "page": 5,
+    "chars": 29,
+    "hasImages": true,
+    "preview": "4、调试11号和5号，从侧面角度看双脚脚底板，直至双脚平行",
+    "figure": "knowledge/manuals/figures/Roban零点调试-1--p05.png"
+  },
+  {
+    "doc": "Roban零点调试(1).pdf",
+    "slug": "Roban零点调试-1-",
+    "page": 6,
+    "chars": 0,
+    "hasImages": true,
+    "preview": "",
+    "figure": "knowledge/manuals/figures/Roban零点调试-1--p06.png"
+  },
+  {
+    "doc": "Roban零点调试(1).pdf",
+    "slug": "Roban零点调试-1-",
+    "page": 7,
+    "chars": 66,
+    "hasImages": true,
+    "preview": "5、调试12号和6号，从此角度观察双脚脚底板，调试至双脚内侧边缘呈直线 三、正常的整体状态图 红线部分为双腿参照对齐的部分 零点模式",
+    "figure": "knowledge/manuals/figures/Roban零点调试-1--p07.png"
+  },
+  {
+    "doc": "Roban零点调试(1).pdf",
+    "slug": "Roban零点调试-1-",
+    "page": 8,
+    "chars": 0,
+    "hasImages": true,
+    "preview": "",
+    "figure": "knowledge/manuals/figures/Roban零点调试-1--p08.png"
+  },
+  {
+    "doc": "Roban零点调试(1).pdf",
+    "slug": "Roban零点调试-1-",
+    "page": 9,
+    "chars": 4,
+    "hasImages": true,
+    "preview": "站立模式",
+    "figure": "knowledge/manuals/figures/Roban零点调试-1--p09.png"
+  },
+  {
+    "doc": "Roban零点调试(1).pdf",
+    "slug": "Roban零点调试-1-",
+    "page": 10,
+    "chars": 0,
+    "hasImages": true,
+    "preview": "",
+    "figure": "knowledge/manuals/figures/Roban零点调试-1--p10.png"
+  },
+  {
+    "doc": "Roban零点调试(1).pdf",
+    "slug": "Roban零点调试-1-",
+    "page": 11,
+    "chars": 107,
+    "hasImages": true,
+    "preview": "四、调试完毕后身体的前倾/后仰问题 调试完毕后的机器人身体整体往前倾或后仰时，可调整舵机（9号、3号），（10号、4号），（11号、5 号）；根据实际情况调整，注意调整时，双腿相对应的舵机需要一起调，同方向、同数值",
+    "figure": "knowledge/manuals/figures/Roban零点调试-1--p11.png"
+  },
+  {
+    "doc": "Roban零点调试(1).pdf",
+    "slug": "Roban零点调试-1-",
+    "page": 12,
+    "chars": 0,
+    "hasImages": false,
+    "preview": "",
+    "figure": "knowledge/manuals/figures/Roban零点调试-1--p12.png"
+  },
+  {
+    "doc": "所有节点 topic 和 service 整理.pdf",
+    "slug": "所有节点-topic-和-service-整理",
+    "page": 1,
+    "chars": 609,
+    "hasImages": false,
+    "preview": "所有节点 topic 和 service 整理.md 2023/7/7 1 / 3 所有节点 topic 和 service 整理 /chin_camera Publications 1. /chin_camera/image [senso",
+    "figure": null
+  },
+  {
+    "doc": "所有节点 topic 和 service 整理.pdf",
+    "slug": "所有节点-topic-和-service-整理",
+    "page": 2,
+    "chars": 716,
+    "hasImages": false,
+    "preview": "所有节点 topic 和 service 整理.md 2023/7/7 2 / 3 Publications 1. /micarrays/wakeup [std_msgs/String] 麦克风阵列唤醒 /ros_msg_node Serv",
+    "figure": null
+  },
+  {
+    "doc": "所有节点 topic 和 service 整理.pdf",
+    "slug": "所有节点-topic-和-service-整理",
+    "page": 3,
+    "chars": 230,
+    "hasImages": false,
+    "preview": "所有节点 topic 和 service 整理.md 2023/7/7 3 / 3 1. /MediumSize/BodyHub/Status [std_msgs/UInt16] 状态机状态 2. /MediumSize/BodyHub/W",
+    "figure": null
+  }
+]

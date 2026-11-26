@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "source": "knowledge/manuals/pdf/所有节点 topic 和 service 整理.pdf",
+  "sourceDate": "2023-07-07",
+  "note": "官方节点清单节选（原文 3 页，未覆盖全部节点）。用途：判断某节点应发布/订阅什么、自检时核对 topic 是否存在、诊断时确认数据流断在哪一段。",
+  "nodes": [
+    {
+      "node": "/chin_camera",
+      "publications": [
+        { "topic": "/chin_camera/image", "type": "sensor_msgs/Image", "purpose": "下巴摄像头视频流" }
+      ],
+      "services": [],
+      "subscriptions": [],
+      "kbComponent": "camera.chin",
+      "selfcheckHint": "下巴相机故障时该 topic 应仍有数据；验证判据 /chin_camera/image >= 5 Hz"
+    },
+    {
+      "node": "/ros_color_node",
+      "publications": [],
+      "services": [
+        { "name": "/chinCamera_color_recognition", "type": "ros_color_node/ColorRecognition", "purpose": "下巴摄像头颜色识别" },
+        { "name": "/color_recognition", "type": "ros_color_node/ColorRecognition", "purpose": "眼睛摄像头颜色识别" }
+      ],
+      "subscriptions": []
+    },
+    {
+      "node": "/ros_face_node",
+      "publications": [],
+      "services": [
+        { "name": "/ros_face_node/face_detect", "type": "未写明", "purpose": "人脸识别" }
+      ],
+      "subscriptions": []
+    },
+    {
+      "node": "/ros_gesture_node",
+      "publications": [],
+      "services": [
+        { "name": "/ros_gesture_node/gesture_detect", "type": "未写明", "purpose": "手势识别" }
+      ],
+      "subscriptions": []
+    },
+    {
+      "node": "/ros_label_node",
+      "publications": [
+        { "topic": "/camera/label/image_raw", "type": "sensor_msgs/Image", "purpose": "眼睛摄像头图像上画矩形框" },
+        { "topic": "/chin_camera/label/image_raw", "type": "sensor_msgs/Image", "purpose": "下巴摄像头图像上画矩形框" }
+      ],
+      "services": [],
+      "subscriptions": []
+    },
+    {
+      "node": "/ros_mic_arrays",
+      "publications": [
+        { "topic": "/micarrays/wakeup", "type": "std_msgs/String", "purpose": "麦克风阵列唤醒" }
+      ],
+      "services": [],
+      "subscriptions": [],
+      "kbComponent": "audio.mic-array"
+    },
+    {
+      "node": "/ros_msg_node",
+      "publications": [],
+      "services": [
+        { "name": "/ros_msg_node/process_msg_process", "type": "未写明", "purpose": "进度通知" },
+        { "name": "/ros_msg_node/finish_msg_process", "type": "未写明", "purpose": "结束通知" }
+      ],
+      "subscriptions": []
+    },
+    {
+      "node": "/ros_socket_node",
+      "publications": [
+        { "topic": "/Finish", "type": "std_msgs/String", "purpose": "结束" },
+        { "topic": "/MediumSize/BodyHub/HeadPosition", "type": "bodyhub/JointControlPoint", "purpose": "控制头部舵机", "motion": true },
+        { "topic": "/MediumSize/BodyHub/MotoPosition", "type": "bodyhub/JointControlPoint", "purpose": "控制所有关节", "motion": true },
+        { "topic": "/MediumSize/BodyHub/jointControl", "type": "sensor_msgs/JointState", "purpose": "控制关节，可指定任意关节", "motion": true },
+        { "topic": "/VirtualPanel", "type": "std_msgs/String", "purpose": "虚拟手柄", "motion": true },
+        { "topic": "/gaitCommand", "type": "std_msgs/Float64MultiArray", "purpose": "步态控制", "motion": true },
+        { "topic": "/terminate_current_process", "type": "std_msgs/String", "purpose": "终止当前示例进程" },
+        { "topic": "/ActRunner/DeviceList", "type": "ros_actions_node/DeviceList", "purpose": "发送摄像头和控制器的状态" }
+      ],
+      "services": [],
+      "subscriptions": [
+        { "topic": "/MediumSize/BodyHub/Status", "type": "std_msgs/UInt16", "purpose": "状态机状态（preReady/pause 等判断依据）" },
+        { "topic": "/MediumSize/BodyHub/WalkingStatus", "type": "std_msgs/Float64", "purpose": "机器人步行状态" },
+        { "topic": "/requestGaitCommand", "type": "std_msgs/Bool", "purpose": "行走模式下脚步指令低于阈值时请求新控制脚步" }
+      ],
+      "kbComponent": "bodyhub",
+      "safety": "所有带 \"motion\": true 的 topic 会让关节/整机运动；按 ATTENTION 规则 2 必须逐次取得用户批准并给出立即停止方式。"
+    }
+  ],
+  "safety": "本文件只是官方清单的转写，不构成可执行指令。任何运动类 topic/service 都受 ATTENTION/ATTENTION.md 约束。"
+}

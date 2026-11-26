@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "id": "camera-chin-startup-order",
+  "title": "下巴相机节点退出（重启可临时恢复；复发指向 USB 链路不稳定）",
+  "component": "camera.chin",
+  "checkIds": [
+    "camera_chin",
+    "chin_camera_node",
+    "dead_processes",
+    "expected_nodes"
+  ],
+  "signature": {
+    "predicates": [
+      {
+        "path": "usbCam",
+        "op": "eq",
+        "value": "OK"
+      },
+      {
+        "path": "chinCameraNode",
+        "op": "eq",
+        "value": "UNREACHABLE"
+      }
+    ],
+    "keywords": [
+      "chin_camera",
+      "usb_cam",
+      "下巴相机"
+    ]
+  },
+  "autoRepairable": true,
+  "playbook": [
+    {
+      "action": "restart-chin-camera",
+      "note": "非运动节点重启；随后要求 /chin_camera/image ≥ 5 Hz 持续 5 秒"
+    }
+  ],
+  "preconditions": {
+    "bodyhubState": [
+      "preReady",
+      "pause"
+    ],
+    "masterId": 0,
+    "usbCam": "OK"
+  },
+  "verification": {
+    "topic": "/chin_camera/image",
+    "minHz": 5,
+    "seconds": 5
+  },
+  "stats": {
+    "attempts": 3,
+    "successes": 3,
+    "failures": 0,
+    "lastOutcome": "success",
+    "lastAttemptAt": "2026-11-19T03:04:08.193Z"
+  },
+  "source": "seed",
+  "confidence": "medium",
+  "notes": "2026-11-19 三次自检（01:48 / 01:49 / 09:51）均出现 camera_chin=fail、chin_camera_node=unreachable、dead_processes=1（chin_camera-3），且 /dev/usb_cam 已存在；初版判断为启动顺序竞态。10:04 按本经验实际重启成功（复检 10.5–13.3 Hz），但约 2.4 分钟后节点再次退出：rosout 报 usb_cam VIDIOC_DQBUF error 19 (No such device)，dmesg 显示 USB 设备断开并重新枚举。说明重启只能临时恢复，复发的真正诱因是 USB 链路/供电不稳定，需人工检查线缆与接口。",
+  "createdAt": "2026-11-19T01:50:00.000Z",
+  "updatedAt": "2026-11-19T03:04:08.193Z",
+  "lastEvidence": {
+    "usbCam": "OK",
+    "usbServo": "OK",
+    "chinCameraNode": "UNREACHABLE",
+    "realsenseNode": "OK",
+    "bodyhubState": "preReady",
+    "masterId": 0,
+    "rates": {
+      "cameraColor": 16.599,
+      "chinCamera": null,
+      "battery": 19.997,
+      "imuTorso": null,
+      "sensorTemperature": null
+    },
+    "tempZeroIds": [
+      14,
+      15,
+      19,
+      21,
+      22
+    ],
+    "dxlBulkReadErrors": 29,
+    "deadProcessNames": "chin_camera-1,chin_camera-3,chin_camera-1",
+    "batteryVoltage": 12.1999998093
+  },
+  "degraded": false,
+  "cooldownMs": 900000,
+  "recurrences": 2,
+  "caveats": [
+    "重启只是临时缓解，不是根治；根治方向是 USB 链路稳定性（线缆/接口/供电）。",
+    "冷却期（cooldownMs=15 分钟）内同故障复发时，workflow 会阻止自动重启并转人工，避免重启循环。",
+    "dmesg 证据：usb 1-1 USB disconnect -> 重新枚举（AlcorMicroCorp USB HD Camera 1e2f:9785）；rosout：VIDIOC_DQBUF error 19, No such device。"
+  ],
+  "lastRecurrence": {
+    "at": "2026-11-19T02:29:10.173Z",
+    "elapsedMs": 249390,
+    "previousSuccessAt": "2026-11-19T02:25:00.776Z",
+    "note": "上次修复成功（2026-11-19T02:25:00.776Z）后 4.2 分钟内同故障复发；冷却期内停止自动重启，疑似 USB/供电链路不稳定，转人工检查线缆与接口。"
+  }
+}

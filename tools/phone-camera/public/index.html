@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Roban 零位测量</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; padding: 16px; background: #f5f5f4; color: #1c1917; }
+    h1 { font-size: 20px; margin: 0 0 8px; }
+    p { line-height: 1.5; margin: 6px 0; }
+    .card { background: #fff; border: 1px solid #e7e5e4; border-radius: 12px; padding: 14px; margin-bottom: 14px; }
+    .hint { color: #57534e; font-size: 13px; }
+    .warn { color: #9a3412; font-size: 13px; }
+    canvas { width: 100%; height: auto; background: #000; border-radius: 8px; touch-action: none; display: block; }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+    button, label.file { border: 1px solid #d6d3d1; background: #fafaf9; color: #1c1917; border-radius: 8px; padding: 10px 12px; font-size: 14px; }
+    button.primary { background: #1c1917; color: #fff; border-color: #1c1917; }
+    button.active { background: #dbeafe; border-color: #60a5fa; }
+    input[type=file] { display: none; }
+    .angle { font-size: 28px; font-weight: 600; margin: 8px 0; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; color: #57534e; }
+    textarea { width: 100%; box-sizing: border-box; min-height: 60px; border: 1px solid #d6d3d1; border-radius: 8px; padding: 8px; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <h1>Roban 零位测量</h1>
+  <div class="card">
+    <p class="hint">手机固定在支架上，画面同时包含基座参考线和要测量的连杆。先标参考线，再标连杆方向。测量结果需要你确认，不能替代现场角度尺/工装。</p>
+    <p class="warn">不要用关闭网页或断开连接来停止机器人；本页面不控制机器人。</p>
+    <div class="row">
+      <label class="file">拍照 / 选图<input id="file" type="file" accept="image/*" capture="environment" /></label>
+      <button id="refBtn">标基座参考线（2点）</button>
+      <button id="linkBtn">标连杆方向（2点）</button>
+      <button id="resetBtn">重画</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <canvas id="canvas" width="900" height="600"></canvas>
+    <div class="angle" id="angleText">角度：--</div>
+    <div class="mono" id="pointsText"></div>
+  </div>
+
+  <div class="card">
+    <p>备注（关节 ID、姿态、测量工具等）</p>
+    <textarea id="note" placeholder="例如：ID7，左臂，初始零位，数字水平仪"></textarea>
+    <div class="row">
+      <button class="primary" id="submitBtn">提交测量</button>
+    </div>
+    <p class="mono" id="result"></p>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const fileInput = document.getElementById('file');
+    const refBtn = document.getElementById('refBtn');
+    const linkBtn = document.getElementById('linkBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const submitBtn = document.getElementById('submitBtn');
+    const angleText = document.getElementById('angleText');
+    const pointsText = document.getElementById('pointsText');
+    const resultText = document.getElementById('result');
+    const note = document.getElementById('note');
+    let image = null;
+    let mode = null;
+    let reference = [];
+    let link = [];
+    let measured = null;
+
+    function resizeCanvas() {
+      if (!image) return;
+      const maxW = 900;
+      const scale = Math.min(1, maxW / image.naturalWidth);
+      canvas.width = Math.round(image.naturalWidth * scale);
+      canvas.height = Math.round(image.naturalHeight * scale);
+      draw();
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (image) ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+      drawLine(reference, '#60a5fa');
+      drawLine(link, '#f97316');
+      for (const p of reference.concat(link)) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 6, 0, Math.PI * 2);
+        ctx.fillStyle = '#fff';
+        ctx.fill();
+        ctx.strokeStyle = '#1c1917';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      }
+    }
+
+    function drawLine(points, color) {
+      if (!points.length) return;
+      ctx.beginPath();
+      ctx.moveTo(points[0].x, points[0].y);
+      for (const p of points.slice(1)) ctx.lineTo(p.x, p.y);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 4;
+      ctx.stroke();
+    }
+
+    function eventPoint(e) {
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+      return { x: (e.clientX - rect.left) * scaleX, y: (e.clientY - rect.top) * scaleY };
+    }
+
+    function lineAngle(points) {
+      if (points.length < 2) return null;
+      return Math.atan2(points[1].y - points[0].y, points[1].x - points[0].x) * 180 / Math.PI;
+    }
+
+    function normalize180(deg) {
+      let d = deg;
+      while (d <= -180) d += 360;
+      while (d > 180) d -= 360;
+      return d;
+    }
+
+    function updateAngle() {
+      const ra = lineAngle(reference);
+      const la = lineAngle(link);
+      if (ra === null || la === null) {
+        angleText.textContent = '角度：--';
+        measured = null;
+        return;
+      }
+      const signed = normalize180(la - ra);
+      measured = {
+        angleDeg: Number(signed.toFixed(2)),
+        referenceAngleDeg: Number(ra.toFixed(2)),
+        linkAngleDeg: Number(la.toFixed(2))
+      };
+      angleText.textContent = `相对角：${signed.toFixed(2)}°`;
+      pointsText.textContent = `参考线 ${ra.toFixed(1)}°，连杆 ${la.toFixed(1)}°`;
+    }
+
+    canvas.addEventListener('click', (e) => {
+      if (!image || !mode) return;
+      const p = eventPoint(e);
+      if (mode === 'reference') {
+        if (reference.length >= 2) reference = [];
+        reference.push(p);
+        if (reference.length === 2) mode = null;
+      } else if (mode === 'link') {
+        if (link.length >= 2) link = [];
+        link.push(p);
+        if (link.length === 2) mode = null;
+      }
+      updateButtons();
+      draw();
+      updateAngle();
+    });
+
+    function updateButtons() {
+      refBtn.classList.toggle('active', mode === 'reference');
+      linkBtn.classList.toggle('active', mode === 'link');
+    }
+
+    refBtn.addEventListener('click', () => { mode = 'reference'; updateButtons(); });
+    linkBtn.addEventListener('click', () => { mode = 'link'; updateButtons(); });
+    resetBtn.addEventListener('click', () => {
+      reference = []; link = []; measured = null; mode = null;
+      updateButtons(); draw(); updateAngle(); resultText.textContent = '';
+    });
+
+    fileInput.addEventListener('change', () => {
+      const file = fileInput.files && fileInput.files[0];
+      if (!file) return;
+      const url = URL.createObjectURL(file);
+      const img = new Image();
+      img.onload = () => {
+        image = img;
+        resizeCanvas();
+        URL.revokeObjectURL(url);
+      };
+      img.src = url;
+    });
+
+    submitBtn.addEventListener('click', async () => {
+      if (!image || !measured) {
+        resultText.textContent = '先拍照并标出两条线。';
+        return;
+      }
+      submitBtn.disabled = true;
+      resultText.textContent = '提交中...';
+      try {
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.82);
+        const res = await fetch('/api/capture', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            imageDataUrl: dataUrl,
+            angleDeg: measured.angleDeg,
+            referenceAngleDeg: measured.referenceAngleDeg,
+            linkAngleDeg: measured.linkAngleDeg,
+            points: { reference, link },
+            note: note.value
+          })
+        });
+        const body = await res.json();
+        if (!body.ok) throw new Error(body.error || 'upload failed');
+        resultText.textContent = `已保存：${body.jsonFile}`;
+      } catch (err) {
+        resultText.textContent = `提交失败：${err.message}`;
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+
+    draw();
+  </script>
+</body>
+</html>
