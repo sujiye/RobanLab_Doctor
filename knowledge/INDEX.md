@@ -65,3 +65,15 @@ python3 tools/manual_search.py "红字" --context 3
 # 直接 grep（带 <!-- page N --> 标记）
 grep -n -i "check" knowledge/manuals/text/Roban_教员培训手册_20220111.md
 ```
+
+## 五、自动检测如何用这些文档
+
+1. **判据表**：[CHECKMAP.md](CHECKMAP.md) —— 官方自检项 ↔ agent 检查项一一对应，
+   写明每项出自哪本手册第几页、哪些必须人工做。
+2. **机器可读基线**：`official-baseline.json`（规格/版本判据/开机行为/零点/镜像流程），
+   由 `skills/official-baseline.js` 读取，在检测流程里作为独立步骤运行。
+3. **检测流程**：`probe → selfcheck → official-baseline → diagnose → 故障分组 → 知识库 → 修复 → 复检 → 报告`。
+   - 版本/机型决定后续期望（Ubuntu 16.04 = Roban 1.0 / 20.04 = Roban 2.0；ROS 环境按 kinetic/noetic/melodic 回退）。
+   - 开机不足 120 s 时节点缺失只判 warn（官方：上电约 40 s 才加锁并恢复站立姿态）。
+   - 官方 `check` 程序**只静态识别、不执行**；红字报错用 rosout/roslaunch 日志做等价只读检查。
+4. 只想跑检测+官方对照：`node workflow/harness-adapter.example.js baseline`（只读）。

@@ -48,7 +48,8 @@ const CHECK_COMPONENT = {
   zero_point_backup: 'calibration.zero_point',
   mic_array: 'audio.mic',
   realsense_usb: 'camera.realsense',
-  chin_launch_path: 'camera.chin'
+  chin_launch_path: 'system.nodes',
+  official_check_coverage: 'sensor.sensorhub'
 };
 
 function cameraChinPredicates(probe) {
@@ -63,7 +64,7 @@ const COMPONENTS = {
   'camera.chin': {
     title: '下巴相机链路',
     autoRepairable: true,
-    targets: ['camera_chin', 'chin_camera_node', 'expected_nodes', 'chin_launch_path'],
+    targets: ['camera_chin', 'chin_camera_node', 'expected_nodes'],
     locks: ['camera.chin', 'usb:camera'],
     preconditions: { bodyhubState: ['preReady', 'pause'], masterId: 0, usbCam: 'OK' },
     verification: { topic: '/chin_camera/image', minHz: 5, seconds: 5 },
@@ -112,9 +113,11 @@ const COMPONENTS = {
   'sensor.sensorhub': {
     title: 'SensorHub 数据',
     autoRepairable: false,
-    targets: ['sensor_hub_temperature'],
+    targets: ['sensor_hub_temperature', 'official_check_coverage'],
     locks: [],
-    manualReason: 'SensorHub 温度低频/事件式发布时短窗口无数据属正常：延长监听窗口确认。'
+    manualReason:
+      'SensorHub 温度低频/事件式发布时短窗口无数据属正常：延长监听窗口确认。' +
+      '官方 check 的「脚底压感测试」等项若没有可读 topic，需人工在 VNC 终端跑 `check` 逐项确认（《Roban机器人自检手册》p.1；《Roban_教员培训手册》p.24），agent 不执行交互程序。'
   },
   'control.bodyhub': {
     title: 'BodyHub 控制状态',
@@ -210,9 +213,9 @@ const LIVE_SIGNALS = {
   'servo.temperature': ['servo_temperature'],
   'power.battery': ['battery_voltage', 'battery_topic'],
   'sensor.imu': ['imu_torso'],
-  'sensor.sensorhub': ['sensor_hub_temperature'],
+  'sensor.sensorhub': ['sensor_hub_temperature', 'official_check_coverage'],
   'control.bodyhub': ['bodyhub_state', 'bodyhub_owner', 'bodyhub_queues'],
-  'system.nodes': ['expected_nodes', 'ros_master'],
+  'system.nodes': ['expected_nodes', 'ros_master', 'chin_launch_path'],
   'system.version': ['robot_model', 'ros_env', 'code_freshness'],
   'system.boot': ['boot_autologin', 'boot_autostart', 'boot_window', 'master_unreachable_logs', 'ros_master'],
   'calibration.zero_point': ['zero_point_backup'],

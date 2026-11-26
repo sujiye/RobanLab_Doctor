@@ -58,10 +58,13 @@ echo "STAIR_OFFSET=$([ -f "$STAIR_OFFSET" ] && echo OK || echo MISSING)"
 
 # ---- 官方自检项覆盖扫描（《自检手册》p.1-2；《教员手册》p.24 脚底压感测试） ----
 ALL_TOPICS="$(timeout 6 rostopic list 2>/dev/null)"
+ALL_SERVICES="$(timeout 6 rosservice list 2>/dev/null)"
 echo "TOPIC_COUNT=$(printf '%s\n' "$ALL_TOPICS" | grep -c . 2>/dev/null | tr -d ' ')"
+echo "TOPICS=$(printf '%s\n' "$ALL_TOPICS" | tr '\n' ',' | sed 's/,$//')"
+echo "SERVICES=$(printf '%s\n' "$ALL_SERVICES" | tr '\n' ',' | sed 's/,$//')"
 echo "FOOT_PRESSURE_TOPICS=$(printf '%s\n' "$ALL_TOPICS" | grep -iE 'foot|pressure|sole|bump' | tr '\n' ',' | sed 's/,$//')"
 echo "SENSORHUB_TOPICS=$(printf '%s\n' "$ALL_TOPICS" | grep -i 'SensorHub' | tr '\n' ',' | sed 's/,$//')"
-echo "BODYHUB_SERVICES=$(timeout 6 rosservice list 2>/dev/null | grep -ic 'BodyHub' 2>/dev/null | tr -d ' ')"
+echo "BODYHUB_SERVICES=$(printf '%s\n' "$ALL_SERVICES" | grep -ic 'BodyHub' 2>/dev/null | tr -d ' ')"
 
 # ---- USB 设备（官方规格：RealSense D435 + USB 下巴相机） ----
 LSUSB="$(lsusb 2>/dev/null)"
@@ -73,7 +76,8 @@ CHECK_BIN="$(command -v check 2>/dev/null)"
 echo "OFFICIAL_CHECK_PATH=${CHECK_BIN:-MISSING}"
 if [ -n "$CHECK_BIN" ]; then
   echo "OFFICIAL_CHECK_SIZE=$(wc -c < "$CHECK_BIN" 2>/dev/null | tr -d ' ')"
-  echo "OFFICIAL_CHECK_ITEMS=$(head -c 3000 "$CHECK_BIN" 2>/dev/null | grep -oiE '[A-Za-z_]{3,20}_(test|check|status)' | head -20 | tr '\n' ',' | sed 's/,$//')"
+  # 去掉二进制字节，避免把不可打印内容写进探测输出
+  echo "OFFICIAL_CHECK_ITEMS=$(head -c 3000 "$CHECK_BIN" 2>/dev/null | tr -c '[:print:]\n' ' ' | grep -oiE '[A-Za-z_]{3,20}_(test|check|status)' | head -20 | tr '\n' ',' | sed 's/,$//')"
 fi
 
 NODES="$(timeout 6 rosnode list 2>/dev/null)"

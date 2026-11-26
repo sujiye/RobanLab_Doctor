@@ -56,6 +56,7 @@ function makeCtx({ quiet = false } = {}) {
 const MODES = {
   probe: { task: 'roban-selfcheck', until: 'probe' },
   selfcheck: { task: 'roban-selfcheck', until: 'diagnose' },
+  baseline: { task: 'roban-selfcheck', until: 'baseline' },
   diagnose: { task: 'roban-selfcheck', until: 'diagnose' },
   all: { task: 'roban-selfcheck', until: 'report' },
   plan: { task: 'roban-auto-repair', until: 'plan' },
@@ -70,6 +71,7 @@ function usage() {
     '',
     'mode:',
     '  probe | selfcheck | diagnose | all   # 旧流程：只读自检 / 单动作修复',
+    '  baseline # 只读检测 + 官方手册基线对照（机型/版本/开机/零点/硬件/topic 清单）',
     '  plan     # 检测 + 故障分组 + 知识库检索 + 修复计划（只读）',
     '  repair   # 并行修复阶段（默认 dry-run）',
     '  verify   # 修复 + 复检',
@@ -135,6 +137,16 @@ function summarizeState(state) {
       targets: unit.targets,
       locks: unit.locks
     })),
+    baseline: state.baseline
+      ? {
+          path: state.baseline.path,
+          source: state.baseline.source,
+          summary: state.baseline.summary,
+          mismatches: state.baseline.mismatches,
+          officialSelfCheck: state.baseline.officialSelfCheck,
+          safetyNotes: state.baseline.safetyNotes
+        }
+      : null,
     plans: (state.plans || []).map(compactPlan),
     kbLookups: state.kbLookups || [],
     planSummary: state.planSummary || null,

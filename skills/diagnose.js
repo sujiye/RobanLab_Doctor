@@ -39,7 +39,8 @@ const CATEGORY = {
   zero_point_backup: 'calibration',
   realsense_usb: 'hardware',
   chin_launch_path: 'software',
-  mic_array: 'sensor'
+  mic_array: 'sensor',
+  official_check_coverage: 'sensor'
 };
 
 const SEVERITY_ORDER = { fail: 0, warn: 1, unknown: 2, ok: 3 };
@@ -335,6 +336,33 @@ function build(probe, checks) {
       needsUserInput,
       '人工待办（agent 不执行）：现场对机器人说唤醒词，同时用 rostopic hz /micarrays/wakeup 观察是否有消息；' +
       '若始终无数据，按《Roban拆机培训》p.7 人工检查六麦克风阵列数据线（拆机属人工操作，agent 不执行）。'
+    );
+  }
+
+  const officialCheck = pick(checks, 'official_check_coverage');
+  if (officialCheck && officialCheck.status !== 'ok') {
+    const topicsInfo = probe.topics || {};
+    hypotheses.push({
+      id: 'official-check-no-readable-topic',
+      statement:
+        '官方 `check` 程序的「脚底压感测试」等自检项没有可读 topic（当前 topic 总数 ' +
+        `${topicsInfo.count || 0}，SensorHub topic ${(topicsInfo.sensorHub || []).length} 个，` +
+        `BodyHub service ${probe.bodyhubServices || 0} 个）：《Roban机器人自检手册》p.1-2 与 ` +
+        '《Roban_教员培训手册》p.24 要求人工在 VNC 终端逐项运行 `check` 并截图报错；' +
+        '该程序需要交互输入，agent 不执行，只能转人工确认。',
+      evidence: [
+        `footPressureTopics=${(topicsInfo.footPressure || []).join(', ') || '无'}`,
+        `sensorHubTopics=${(topicsInfo.sensorHub || []).length}`,
+        `topicCount=${topicsInfo.count || 0}`,
+        `bodyhubServices=${probe.bodyhubServices || 0}`,
+        `officialCheckPath=${(probe.officialCheck && probe.officialCheck.path) || 'MISSING'}`
+      ],
+      confidence: 'low'
+    });
+    pushTodo(
+      needsUserInput,
+      '人工待办（agent 不执行）：按《Roban机器人自检手册》p.1 在机器人 VNC 终端运行 `check`，逐项记录编号与报错并截图' +
+      '（《Roban_教员培训手册》p.24：脚底压感测试红=有问题、绿=正常）；没有可读 topic 的项只能靠人工现场确认。'
     );
   }
 

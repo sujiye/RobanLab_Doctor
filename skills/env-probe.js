@@ -90,7 +90,12 @@ function buildProbe(raw) {
     repo: {
       dir: raw.REPO_DIR || 'MISSING',
       commitDate: parseDate(raw.REPO_COMMIT_DATE),
-      commit: raw.REPO_COMMIT || ''
+      commit: raw.REPO_COMMIT || '',
+      // 官方判据：仓库时间早于 2023-11-29 视为需要更新（《版本查询手册》p.1）
+      outdated: (() => {
+        const d = parseDate(raw.REPO_COMMIT_DATE);
+        return d ? d < CODE_CUTOVER : null;
+      })()
     },
     // 开机自启 / 自动登录（《开机无法自动进入系统》p.1；《教员手册》p.59-60）
     boot: {
@@ -120,9 +125,11 @@ function buildProbe(raw) {
     },
     topics: {
       count: asInt(raw.TOPIC_COUNT, 0),
+      all: (raw.TOPICS || '').split(',').filter(Boolean),
       footPressure: (raw.FOOT_PRESSURE_TOPICS || '').split(',').filter(Boolean),
       sensorHub: (raw.SENSORHUB_TOPICS || '').split(',').filter(Boolean)
     },
+    services: (raw.SERVICES || '').split(',').filter(Boolean),
     bodyhubServices: asInt(raw.BODYHUB_SERVICES, 0),
     bodyhubNode: raw.BODYHUB_NODE || 'UNREACHABLE',
     bodyhubState: raw.BODYHUB_STATE || 'UNKNOWN',

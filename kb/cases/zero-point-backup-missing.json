@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "zero-point-backup-missing",
+  "title": "零点参数 ~/.lejuconfig/offset.yaml 缺失或为空：镜像刷新前必须人工备份零点",
+  "component": "calibration.zero_point",
+  "checkIds": ["zero_point_backup"],
+  "signature": {
+    "predicates": [
+      { "path": "zeroPoint.officialOffset", "op": "eq", "value": "MISSING" }
+    ],
+    "keywords": ["零点", "offset.yaml", "备份"]
+  },
+  "autoRepairable": false,
+  "playbook": [],
+  "manualAdvice": "人工备份零点参数：《Roban查零点步骤》p.1 写 cd ~/.lejuconfig && sudo gedit offset.yaml，拍照/截图保存当前零点数值；《Roban_教员培训手册》p.37 说明楼梯案例需把 ~/.lejuconfig/offset.yaml 复制到 ~/robot_ros_application/footstair/src/motion_interface/config/offset.yaml。《Roban机器人离线镜像刷新手册》p.1 把「先保存零点参数」列为刷镜像前提；烧写后写回并重启。agent 不自动写 offset.yaml/dxlInitPose.yaml、不自动重启（ATTENTION 规则 3）。",
+  "officialDoc": "《Roban查零点步骤》 p.1",
+  "cooldownMs": 0,
+  "stats": { "attempts": 0, "successes": 0, "failures": 0, "lastOutcome": null, "lastAttemptAt": null },
+  "recurrences": 0,
+  "lastRecurrence": null,
+  "source": "seed",
+  "confidence": "high",
+  "notes": "官方判据：零点参数在 ~/.lejuconfig/offset.yaml，镜像刷新前必须人工备份，否则烧写后无法恢复零点，姿态与零点调试全部失效。probe.zeroPoint 只读采集文件存在性、行数与楼梯 offset 文件（footstair 的 offset.yaml）。零点属物理标定，写入必须由人工执行；本案例不产生自动动作。",
+  "createdAt": "2026-11-26T01:40:00.000Z",
+  "updatedAt": "2026-11-26T01:40:00.000Z"
+}

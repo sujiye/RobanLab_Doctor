@@ -19,12 +19,13 @@ SSH 用户 `lemon`，密钥认证；默认知识库：`./kb`。
 | 用户想做什么 | 执行 |
 |---|---|
 | 只看机器人当前状态 / 自检 / 诊断 | `node workflow/harness-adapter.example.js selfcheck` |
+| 只看「官方基线对照」：机型/版本/开机/零点/硬件/topic 清单 | `node workflow/harness-adapter.example.js baseline` |
 | 看故障分组、知识库命中、修复计划（只读） | `node workflow/harness-adapter.example.js plan` |
 | 完整流程但不动机器人（默认 dry-run） | `node workflow/harness-adapter.example.js auto` |
 | **真正修复**（必须用户明确确认后） | `node workflow/harness-adapter.example.js auto --confirm` |
 | 跑单元测试（不连机器人） | `node --test workflow/auto-repair.test.js` |
 
-可用模式：`probe | selfcheck | diagnose | all | plan | repair | verify | auto`。
+可用模式：`probe | selfcheck | baseline | diagnose | all | plan | repair | verify | auto`。
 环境变量：`ROBAN_HOST`（IP）、`ROBAN_USER`、`ROBAN_KB_DIR`、`ROBAN_REPAIR_CONCURRENCY`（默认 3）。
 
 ## 推荐执行顺序
@@ -37,6 +38,25 @@ SSH 用户 `lemon`，密钥认证；默认知识库：`./kb`。
    - 修复后读报告里的「复检」与「知识库更新」，告知实际状态变化和 KB 事件。
 4. 命令最后会打印 `[report] <路径>`；打开该 Markdown 提炼给用户，不要把整篇原样粘贴。
 5. 知识库经验看 `kb/cases/*.json`，审计日志看 `kb/events.jsonl`；用户问“有哪些经验”时读这两处。
+
+## 检测流程（现在包含官方基线对照）
+
+`probe → selfcheck → official-baseline → diagnose → 故障分组 → 知识库 → 修复 → 复检 → 报告`
+
+新增的只读检测层（全部来自官方手册，出处见 `knowledge/CHECKMAP.md`）：
+
+| 检查项 | 官方判据 |
+|---|---|
+| `robot_model` / `ros_env` | Ubuntu 16.04 = Roban 1.0，20.04 = Roban 2.0（《版本查询手册》p.2）；探测脚本按 kinetic/noetic/melodic 回退，避免 2.0 机型误判「ROS Master 不可访问」 |
+| `code_freshness` | 仓库时间早于 2023-11-29 → warn，建议人工执行官方更新脚本 |
+| `boot_window` | 上电约 40 s 后才加锁并恢复站立姿态；开机不足 120 s 时节点/话题缺失不判故障 |
+| `boot_autologin` | lightdm 缺 `autologin-user-timeout=0` 是官方已知「开机需手动登录」问题 |
+| `boot_autostart` / `master_unreachable_logs` | 缺 `scripts/start.sh` 或日志出现 `Unable to communicate with master` → 人工执行 start.sh（agent 不自动重启） |
+| `zero_point_backup` | `~/.lejuconfig/offset.yaml` 缺失/为空 → 镜像刷新后无法恢复零点 |
+| `realsense_usb` / `mic_array` / `official_check_coverage` | RealSense D435、六麦克风阵列、官方 `check` 程序覆盖项是否可自动读取 |
+
+报告里会新增「官方对照」段落：每个非 ok 项 → 官方出处 → 人工建议。
+**这些新检查项全部只读**；`official-baseline` 不执行任何机器人命令，官方 `check` 程序只静态识别、不运行。
 
 ## 官方手册知识库（`knowledge/`）
 

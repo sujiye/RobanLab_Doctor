@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "boot-autologin-missing",
+  "title": "开机需手动登录：lightdm 缺 autologin-user-timeout 或 autologin-user",
+  "component": "system.boot",
+  "checkIds": ["boot_autologin", "boot_autostart", "boot_window", "master_unreachable_logs"],
+  "signature": {
+    "predicates": [
+      { "path": "boot.lightdm", "op": "eq", "value": "OK" }
+    ],
+    "keywords": ["开机", "自动登录", "lightdm", "autologin"]
+  },
+  "autoRepairable": false,
+  "playbook": [],
+  "manualAdvice": "人工编辑 /etc/lightdm/lightdm.conf：《Roban开机无法自动进入系统》p.1 说明在 autologin-user=lemon 下一行添加 autologin-user-timeout=0，保存后由用户手动重启并复检 boot_autologin。若开机后节点也不齐全，按《Roban_教员培训手册》p.59 人工执行 ~/robot_ros_application/scripts/start.sh。agent 不自动改配置文件、不重启（ATTENTION 规则 3）。",
+  "officialDoc": "《Roban开机无法自动进入系统》 p.1",
+  "cooldownMs": 0,
+  "stats": { "attempts": 0, "successes": 0, "failures": 0, "lastOutcome": null, "lastAttemptAt": null },
+  "recurrences": 0,
+  "lastRecurrence": null,
+  "source": "seed",
+  "confidence": "high",
+  "notes": "官方已知现象：机器人开机后需要接鼠标/键盘手动登录。probe.boot 只读采集 lightdm.conf 的 autologin-user 与 autologin-user-timeout；两者任一缺失即 boot_autologin=warn。修复涉及系统配置文件与重启，全部转人工，本案例不产生自动动作。",
+  "createdAt": "2026-11-26T01:40:00.000Z",
+  "updatedAt": "2026-11-26T01:40:00.000Z"
+}

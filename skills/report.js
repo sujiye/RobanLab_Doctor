@@ -48,6 +48,88 @@ function statusLabel(status) {
   return { ok: 'OK', warn: 'WARN', fail: 'FAIL', unknown: 'UNKNOWN' }[status] || String(status).toUpperCase();
 }
 
+/**
+ * 官方对照段落：把本次非 ok 的检查项映射到官方手册出处 + 官方建议（人工执行）。
+ * baseline 可来自 official-baseline skill（{path, source, spec, ...}）或直接传 JSON spec；
+ * 没有时 report 自己读 knowledge/official-baseline.json。
+ */
+function renderOfficialComparison(lines, checks, probe, baseline) {
+  const spec = baseline && (baseline.spec || baseline.checkToBaseline) ? (baseline.spec || baseline) : loadOfficialBaseline(fsDefault);
+  const counts = { warn: 0, fail: 0, unknown: 0 };
+  const nonOk = (checks || []).filter((c) => NON_OK.has(c.status));
+  for (const c of nonOk) counts[c.status] += 1;
+
+  lines.push('## 官方对照（来自 knowledge/）');
+  lines.push('');
+  lines.push(
+    `- 基线来源：\`${(baseline && baseline.path) || OFFICIAL_BASELINE_PATH}\`` +
+    (baseline && baseline.source === 'fallback' ? '（官方基线文件不可读，使用内置兜底）' : '')
+  );
+  if (spec && spec.executionBoundary) lines.push(`- 执行边界：${esc(spec.executionBoundary)}`);
+
+  const cutover = (spec && spec.modelDetection && spec.modelDetection.codeCutoverDate) || '2023-11-29';
+  const lockSeconds =
+    (spec && spec.bootBehavior && (spec.bootBehavior.lockAfterSeconds || spec.bootBehavior.servoLockAfterPowerOnSeconds)) || 40;
+  const bootCitation = (spec && spec.bootBehavior && spec.bootBehavior.citation) || '《ROBAN机器人使用入门》 p.11–12';
+  const modelCitation = (spec && spec.modelDetection && spec.modelDetection.citation) || '《Roban机器人版本查询手册》 p.2';
+
+  lines.push(
+    `- 本次机型：${esc(probe.robotModel || 'UNKNOWN')}（${esc(probe.osRelease || '系统版本未知')}, ` +
+    `ROS ${esc(probe.rosDistro || '未知')}) —— 出处 ${modelCitation}`
+  );
+  lines.push(
+    `- 本次代码时间：${esc((probe.repo && probe.repo.commitDate) || '无法读取')}` +
+    `（官方阈值 ${cutover}，早于该日期需人工执行更新脚本 —— 《Roban机器人版本查询手册》 p.1）`
+  );
+  lines.push(
+    `- 本次开机时长：${probe.uptimeSeconds === null || probe.uptimeSeconds === undefined ? '未知' : probe.uptimeSeconds + ' s'}` +
+    `（官方：上电约 ${lockSeconds} s 后全舵机加锁并恢复初始站立姿态 —— ${bootCitation}）`
+  );
+  lines.push('');
+
+  if (!nonOk.length) {
+    lines.push('- 本次没有非 ok 检查项，无需对照官方手册。');
+    lines.push('');
+    return;
+  }
+
+  lines.push(
+    `### 非 ok 检查项 → 官方出处 → 官方建议（人工执行，agent 不自动执行）：` +
+    `warn ${counts.warn} / fail ${counts.fail} / unknown ${counts.unknown}`
+  );
+  lines.push('');
+  lines.push('| 检查项 | 状态 | 官方出处 | 官方建议（人工） |');
+  lines.push('|---|---|---|---|');
+  for (const c of nonOk) {
+    const entry = baselineEntryFor(c.id, spec);
+    const citation = entry ? entry.citation : '（知识库无对应条目：内部规则）';
+    const advice = entry ? entry.manualAdvice : '无官方步骤，按内部规则人工排查';
+    lines.push(`| ${esc(c.id)} | ${statusLabel(c.status)} | ${esc(citation)} | ${esc(advice)} |`);
+  }
+  lines.push('');
+
+  if (baseline && baseline.officialSelfCheck && baseline.officialSelfCheck.length) {
+    lines.push('### 官方自检程序（《Roban机器人自检手册》p.1–2）');
+    lines.push('');
+    for (const step of baseline.officialSelfCheck) {
+      lines.push(
+        `- ${esc(step.step)}：${esc(step.detail)} [出处 ${esc(step.citation || '')}]` +
+        `${step.agentRunsIt ? '（agent 只读执行）' : '（需人工在机器人终端执行）'}`
+      );
+    }
+    lines.push('');
+  }
+
+  if (baseline && baseline.safetyNotes && baseline.safetyNotes.length) {
+    lines.push('### 官方安全提示');
+    lines.push('');
+    for (const note of baseline.safetyNotes) {
+      lines.push(`- ${esc(note.note)} [出处 ${esc(note.citation || '')}] → ${esc(note.action || '')}`);
+    }
+    lines.push('');
+  }
+}
+
 function renderSafety(lines, safety) {
   if (!safety) return;
   lines.push('## 安全审查');
@@ -175,7 +257,7 @@ function renderAuto(lines, auto) {
   }
 }
 
-function buildMarkdown({ probe, checks, summary, diagnosis, repair, verify, safety, auto }) {
+function buildMarkdown({ probe, checks, summary, diagnosis, repair, verify, safety, auto, baseline }) {
   const lines = [];
   lines.push('# Roban 自检报告');
   lines.push('');
@@ -193,6 +275,9 @@ function buildMarkdown({ probe, checks, summary, diagnosis, repair, verify, safe
     lines.push(`| ${statusLabel(c.status)} | ${esc(c.id)} | ${esc(c.detail)} |`);
   }
   lines.push('');
+
+  // 新增段落：紧跟「检查项」之后
+  renderOfficialComparison(lines, checks, probe, baseline);
 
   renderSafety(lines, safety);
   renderAuto(lines, auto);
@@ -278,12 +363,15 @@ function buildMarkdown({ probe, checks, summary, diagnosis, repair, verify, safe
 }
 
 async function run(ctx, input = {}) {
-  const { probe, checks, summary, diagnosis, repair, verify, safety, auto } = input;
+  const { probe, checks, summary, diagnosis, repair, verify, safety, auto, baseline } = input;
   if (!probe || !checks || !summary) {
     throw new Error('report 需要 probe、checks、summary');
   }
 
-  const markdown = buildMarkdown({ probe, checks, summary, diagnosis, repair, verify, safety, auto });
+  const markdown = buildMarkdown({
+    probe, checks, summary, diagnosis, repair, verify, safety, auto,
+    baseline: baseline || loadOfficialBaseline(ctx.fs || fsDefault)
+  });
   const fs = ctx.fs || fsDefault;
   const dir = ctx.reportDir || path.join(process.cwd(), 'reports');
   const stamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);

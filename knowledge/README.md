@@ -15,8 +15,10 @@
 knowledge/
 ├── README.md                 # 本文
 ├── INDEX.md                  # 问题 → 文档 → 页码（agent 首先读这个）
+├── CHECKMAP.md               # 官方自检项 ↔ agent 自动检测项 对照表
 ├── CHEATSHEET.md             # 常用命令速查 + 安全分类（只读 / 非运动 / 运动 / 禁止）
-├── manuals/
+├── official-baseline.json    # 官方可判定基线（规格/版本/开机/零点/镜像），被 skills/official-baseline.js 读取
+└── manuals/
 │   ├── pdf/                  # 11 份官方 PDF 原件（引用时写「《文档》 p.N」）
 │   ├── text/               # 每份 PDF 的文本抽取，带 <!-- page N --> 标记，可 grep
 │   ├── figures/            # 文本层很薄的页渲染成 PNG（拆机、零点、镜像刷新等图示）

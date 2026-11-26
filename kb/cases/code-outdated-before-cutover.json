@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "code-outdated-before-cutover",
+  "title": "代码仓库时间早于 2023-11-29 官方阈值：需人工执行更新脚本",
+  "component": "system.version",
+  "checkIds": ["code_freshness", "robot_model", "ros_env"],
+  "signature": {
+    "predicates": [
+      { "path": "repo.dir", "op": "eq", "value": "OK" }
+    ],
+    "keywords": ["版本", "更新", "git"]
+  },
+  "autoRepairable": false,
+  "playbook": [],
+  "manualAdvice": "人工执行官方更新流程：《Roban机器人版本查询手册》p.1 写 cd robot_ros_application/ && git log，若仓库时间早于 2023-11-29 需使用更新脚本命令更新仓库代码；机型判定见 p.2（lsb_release -a：Ubuntu 16.04 → Roban 1.0，Ubuntu 20.04 → Roban 2.0）。agent 不自动改代码仓库、不自动改配置文件、不重启机器人（ATTENTION 规则 3）。",
+  "officialDoc": "《Roban机器人版本查询手册》 p.1",
+  "cooldownMs": 0,
+  "stats": { "attempts": 0, "successes": 0, "failures": 0, "lastOutcome": null, "lastAttemptAt": null },
+  "recurrences": 0,
+  "lastRecurrence": null,
+  "source": "seed",
+  "confidence": "high",
+  "notes": "官方判据：仓库时间早于 2023-11-29 即视为代码过旧。日期字符串不能直接作为谓词比较（probe.repo.commitDate 可能为 null），因此签名只要求仓库目录存在（repo.dir=OK），由 keywords 与 checkIds 提高重合度；判定逻辑在 skills/selfcheck.js 的 CODE_CUTOVER_DATE。更新属整机/代码改动，只能人工执行，本案例不产生自动动作。",
+  "createdAt": "2026-11-26T01:40:00.000Z",
+  "updatedAt": "2026-11-26T01:40:00.000Z"
+}

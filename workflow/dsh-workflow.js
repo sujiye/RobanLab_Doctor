@@ -88,7 +88,9 @@ const detectRaw = await agent(
     '执行：',
     `cd "${CWD}" && ${ENV_PREFIX}ROBAN_HOST=${HOST} node workflow/harness-adapter.example.js auto --json`,
     '',
-    '该命令 stdout 只有一行 JSON（包含 summary/checks/units/plans/kbLookups/planSummary/repairParallel(只读预检)/reportPath）。',
+    '该命令 stdout 只有一行 JSON（包含 summary/checks/baseline/units/plans/kbLookups/planSummary/repairParallel(只读预检)/reportPath）。',
+    '其中 baseline 是官方手册（knowledge/）的基线对照：机型/代码新鲜度/开机宽限期/零点备份/topic 清单，',
+    '每条带 citation 官方出处；这些都属于人工处置项，不得因此触发自动修复。',
     '请原样返回这一行 JSON，不要改写字段、不要补造内容。',
     '如果命令失败，返回 {"error":"<stderr 最后 2000 字符>"}。'
   ].join('\n'),

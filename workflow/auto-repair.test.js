@@ -27,9 +27,15 @@ const kb = require('../skills/kb.js');
 const repairPlan = require('../skills/repair-plan.js');
 const repairParallel = require('../skills/repair-parallel.js');
 const learn = require('../skills/learn.js');
+const report = require('../skills/report.js');
+const envProbe = require('../skills/env-probe.js');
 
 const REPO = path.join(__dirname, '..');
 const SEED_CASE = path.join(REPO, 'kb', 'cases', 'camera-chin-startup-order.json');
+/** 官方手册的结构化基线（由 knowledge/manuals/ 的 PDF 文本层抽取，每条带 citation）。 */
+const OFFICIAL_BASELINE = JSON.parse(
+  fs.readFileSync(path.join(REPO, 'knowledge', 'official-baseline.json'), 'utf8')
+);
 
 const silentCtx = { log() {}, kbDir: null };
 
@@ -57,7 +63,9 @@ function seedKb(dir) {
   fs.writeFileSync(path.join(dir, 'events.jsonl'), '', 'utf8');
 }
 
-/** 与 2026-11-19 基线一致的合成 probe（下巴相机故障，其余正常）。 */
+/** 与 2026-11-19 基线一致的合成 probe（下巴相机故障，其余正常）。
+ *  官方基线字段（机型/版本/开机自启/零点/USB/麦克风/topic 覆盖）取自 knowledge/CHECKMAP.md，
+ *  默认设为「健康」，只保留相机故障，这样归因层只会产出 camera.chin / servo.* / sensor.* 单元。 */
 function baselineProbe(overrides = {}) {
   const nodes = selfcheck.EXPECTED_NODES.filter((node) => node !== '/chin_camera');
   const probe = {
@@ -74,6 +82,32 @@ function baselineProbe(overrides = {}) {
     rosMaster: 'OK',
     nodeCount: nodes.length,
     nodes,
+    // 官方基线：《Roban机器人版本查询手册》p.1-2（仓库时间 2024-06-12 > 2023-11-29；20.04 → Roban 2.0）
+    osRelease: 'Ubuntu 20.04 LTS',
+    robotModel: 'Roban 2.0',
+    rosDistro: 'noetic',
+    uptimeSeconds: 3600,
+    repo: { dir: 'OK', commitDate: '2024-06-12', commit: '9f2c1ab' },
+    // 《Roban开机无法自动进入系统》p.1 / 《Roban_教员培训手册》p.59-60
+    boot: {
+      lightdm: 'OK',
+      autologinUser: 'lemon',
+      autologinTimeout: '0',
+      startScript: 'OK',
+      roscoreProcs: 3
+    },
+    // 《Roban查零点步骤》p.1
+    zeroPoint: { officialOffset: 'OK', officialOffsetLines: 24, stairOffset: 'OK' },
+    chinLaunch: 'OK',
+    usb: { realsense: 'OK', deviceCount: 7 },
+    // 《Roban机器人自检手册》p.1-2：check 程序存在，但脚底压感项没有可读 topic（需人工跑 check）
+    officialCheck: { path: '/usr/bin/check', size: 8123, items: ['脚底压感测试', '舵机温度'] },
+    topics: {
+      count: 148,
+      footPressure: [],
+      sensorHub: ['/MediumSize/SensorHub/BatteryState', '/MediumSize/SensorHub/Temperature']
+    },
+    bodyhubServices: 12,
     bodyhubNode: 'OK',
     bodyhubState: 'preReady',
     poseQueue: 0,
@@ -90,7 +124,9 @@ function baselineProbe(overrides = {}) {
       chinCamera: null,
       battery: 20,
       imuTorso: null,
-      sensorTemperature: null
+      sensorTemperature: null,
+      micWakeup: 1.4,
+      bodyhubStatus: 2.0
     },
     battery: { voltage: 12.2, percentage: 0, present: 'True' },
     chinCameraNode: 'UNREACHABLE',
@@ -99,6 +135,7 @@ function baselineProbe(overrides = {}) {
       dxlBulkReadErrors: 16,
       timerTimeouts: 0,
       roslogErrors: 0,
+      masterUnreachableLogs: 0,
       deadProcesses: 1,
       deadProcessNames: 'chin_camera-3'
     }
@@ -628,4 +665,148 @@ test('dsh 旧流程兼容 & 复检目标合并', () => {
     }
   };
   assert.deepEqual(verifyTargetsFromState(state), ['a', 'b', 'c']);
+});
+
+/* ------------------------------------------------------------------ *
+ * 8) 官方基线对照（knowledge/ 官方手册驱动的新增检测项）
+ * ------------------------------------------------------------------ */
+
+test('机型与版本识别：16.04 → Roban 1.0，20.04 → Roban 2.0', () => {
+  const envProbe = require('../skills/env-probe.js');
+  const p1 = envProbe.buildProbe({ OS_RELEASE: 'Ubuntu 16.04.7 LTS', REPO_COMMIT_DATE: '2022-05-01' });
+  assert.equal(p1.robotModel, 'Roban 1.0');
+  assert.equal(p1.repo.commitDate, '2022-05-01');
+  assert.equal(p1.repo.outdated, true);
+
+  const p2 = envProbe.buildProbe({ OS_RELEASE: 'Ubuntu 20.04.6 LTS', REPO_COMMIT_DATE: '2024-06-12' });
+  assert.equal(p2.robotModel, 'Roban 2.0');
+  assert.equal(p2.repo.outdated, false);
+
+  const model = detect(baselineProbe({ osRelease: 'Ubuntu 16.04.7 LTS', robotModel: 'Roban 1.0' }))
+    .checks.find((c) => c.id === 'robot_model');
+  assert.equal(model.status, 'ok');
+  assert.match(model.detail, /Roban 1\.0/);
+});
+
+test('代码新鲜度：早于 2023-11-29 判 warn，之后为 ok，仓库缺失为 warn', () => {
+  const outdated = detect(baselineProbe({
+    repo: { dir: 'OK', commitDate: '2022-05-01', commit: 'aaa', outdated: true }
+  })).checks.find((c) => c.id === 'code_freshness');
+  assert.equal(outdated.status, 'warn');
+  assert.match(outdated.detail, /2023-11-29/);
+
+  const fresh = detect(baselineProbe({
+    repo: { dir: 'OK', commitDate: '2024-06-12', commit: 'bbb', outdated: false }
+  })).checks.find((c) => c.id === 'code_freshness');
+  assert.equal(fresh.status, 'ok');
+
+  const missing = detect(baselineProbe({
+    repo: { dir: 'MISSING', commitDate: null, commit: '', outdated: null }
+  })).checks.find((c) => c.id === 'code_freshness');
+  assert.equal(missing.status, 'warn');
+});
+
+test('自动登录：缺 autologin-user 或 timeout 都判 warn，齐备为 ok', () => {
+  const noUser = detect(baselineProbe({
+    boot: { lightdm: 'OK', autologinUser: '', autologinTimeout: '', startScript: 'OK', roscoreProcs: 2 }
+  })).checks.find((c) => c.id === 'boot_autologin');
+  assert.equal(noUser.status, 'warn');
+  assert.match(noUser.detail, /lightdm/);
+
+  const noTimeout = detect(baselineProbe({
+    boot: { lightdm: 'OK', autologinUser: 'lemon', autologinTimeout: '', startScript: 'OK', roscoreProcs: 2 }
+  })).checks.find((c) => c.id === 'boot_autologin');
+  assert.equal(noTimeout.status, 'warn');
+  assert.match(noTimeout.detail, /autologin-user-timeout/);
+
+  const good = detect().checks.find((c) => c.id === 'boot_autologin');
+  assert.equal(good.status, 'ok');
+});
+
+test('开机自启：start.sh 缺失 warn；有脚本但无 roscore 进程且 master 不可达 fail', () => {
+  const noScript = detect(baselineProbe({
+    boot: { lightdm: 'OK', autologinUser: 'lemon', autologinTimeout: '0', startScript: 'MISSING', roscoreProcs: 0 }
+  })).checks.find((c) => c.id === 'boot_autostart');
+  assert.equal(noScript.status, 'warn');
+
+  const dead = detect(baselineProbe({
+    rosMaster: 'FAIL',
+    nodes: [],
+    boot: { lightdm: 'OK', autologinUser: 'lemon', autologinTimeout: '0', startScript: 'OK', roscoreProcs: 0 }
+  })).checks.find((c) => c.id === 'boot_autostart');
+  assert.equal(dead.status, 'fail');
+  assert.match(dead.detail, /start\.sh/);
+});
+
+test('零点备份：文件缺失时 warn（官方要求镜像刷新前先备份零点）', () => {
+  const c = detect(baselineProbe({
+    zeroPoint: { officialOffset: 'MISSING', officialOffsetLines: 0, stairOffset: 'MISSING' }
+  })).checks.find((item) => item.id === 'zero_point_backup');
+  assert.equal(c.status, 'warn');
+  assert.match(c.detail, /offset\.yaml/);
+});
+
+test('开机宽限期：开机 60 s 时缺节点只判 warn，不判 fail', () => {
+  const justBooted = selfcheck.evaluate(baselineProbe({ uptimeSeconds: 60 })).checks
+    .find((c) => c.id === 'expected_nodes');
+  assert.equal(justBooted.status, 'warn');
+  assert.match(justBooted.detail, /开机不足|40 s/);
+
+  const settled = selfcheck.evaluate(baselineProbe({ uptimeSeconds: 3600 })).checks
+    .find((c) => c.id === 'expected_nodes');
+  assert.equal(settled.status, 'fail');
+});
+
+test('官方基线告警归入人工单元：system.version / system.boot 不允许自动修复', () => {
+  const detected = detect(baselineProbe({
+    repo: { dir: 'OK', commitDate: '2022-05-01', commit: 'aaa', outdated: true },
+    boot: { lightdm: 'OK', autologinUser: '', autologinTimeout: '', startScript: 'OK', roscoreProcs: 2 }
+  }));
+  const units = faultUnits.build(detected);
+  const versionUnit = units.find((u) => u.id === 'system.version');
+  const bootUnit = units.find((u) => u.id === 'system.boot');
+  assert.ok(versionUnit, '应存在 system.version 单元');
+  assert.ok(bootUnit, '应存在 system.boot 单元');
+  assert.equal(versionUnit.autoRepairable, false);
+  assert.equal(bootUnit.autoRepairable, false);
+  assert.match(`${versionUnit.manualReason}${bootUnit.manualReason}`, /人工|手动/);
+  // 唯一允许自动修复的仍是下巴相机（白名单动作）
+  assert.deepEqual(units.filter((u) => u.autoRepairable).map((u) => u.id), ['camera.chin']);
+});
+
+test('官方基线技能：每条对照都带官方出处，且不自动执行官方 check 程序', async () => {
+  const officialBaseline = require('../skills/official-baseline.js');
+  const probe = baselineProbe({
+    topics: { count: 1, all: ['/chin_camera/image'], footPressure: [], sensorHub: [] }
+  });
+  const out = await officialBaseline.run({ log() {} }, { probe, checks: detect(probe).checks });
+  assert.ok(out.baseline.mismatches.length > 0);
+  for (const item of out.baseline.mismatches) {
+    assert.ok(item.citation && item.citation.length > 0, `${item.item} 缺少官方出处`);
+  }
+  assert.ok(out.baseline.mismatches.some((m) => m.item === '官方事件式数据流'));
+  const checkStep = out.baseline.officialSelfCheck.find((s) => s.step === '官方自检程序');
+  assert.equal(checkStep.agentRunsIt, false, '官方 check 程序必须人工运行');
+  assert.ok(out.baseline.safetyNotes.length >= 1);
+});
+
+test('报告包含「官方对照」段落并写出官方出处', async () => {
+  const officialBaseline = require('../skills/official-baseline.js');
+  const report = require('../skills/report.js');
+  const probe = baselineProbe({ repo: { dir: 'OK', commitDate: '2022-05-01', commit: 'aaa', outdated: true } });
+  const evaluated = selfcheck.evaluate(probe);
+  const out = await officialBaseline.run({ log() {} }, { probe, checks: evaluated.checks });
+  const md = report.buildMarkdown({
+    probe,
+    checks: evaluated.checks,
+    summary: evaluated.summary,
+    diagnosis: { findings: [], hypotheses: [], repairCandidates: [], needsUserInput: [] },
+    repair: null,
+    verify: null,
+    safety: null,
+    baseline: out.baseline
+  });
+  assert.match(md, /## 官方对照/);
+  assert.match(md, /《Roban机器人版本查询手册》/);
+  assert.match(md, /人工/);
 });

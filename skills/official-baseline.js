@@ -44,6 +44,49 @@ const FALLBACK = {
   }
 };
 
+/**
+ * 官方 topic/service 清单（《所有节点 topic 和 service 整理》p.1-3）。
+ * 其中只有相机/电池/BodyHub 状态这类「常驻数据流」可以断言存在；
+ * 其余是事件式或示例运行时才发布，缺失只记为 unknown，不判故障。
+ */
+const ALWAYS_ALIVE_TOPICS = [
+  '/chin_camera/image',
+  '/camera/color/image_raw',
+  '/MediumSize/SensorHub/BatteryState',
+  '/MediumSize/BodyHub/Status'
+];
+
+function loadTopicMap(fsObj) {
+  const file = path.join(__dirname, '..', 'knowledge', 'manuals', 'topics-services.json');
+  try {
+    const data = JSON.parse(fsObj.readFileSync(file, 'utf8'));
+    return { path: file, data };
+  } catch (err) {
+    return { path: file, data: null, warning: err.message };
+  }
+}
+
+function compareTopicMap(probe, topicMap) {
+  if (!topicMap || !Array.isArray(topicMap.nodes)) return [];
+  const actual = new Set((probe.topics && probe.topics.all) || []);
+  if (!actual.size) return [];
+
+  const gaps = [];
+  for (const node of topicMap.nodes) {
+    for (const pub of node.publications || []) {
+      const topic = pub.topic;
+      if (!topic || actual.has(topic)) continue;
+      gaps.push({
+        node: node.node,
+        topic,
+        purpose: pub.purpose || '',
+        alwaysAlive: ALWAYS_ALIVE_TOPICS.includes(topic)
+      });
+    }
+  }
+  return gaps;
+}
+
 function loadBaseline(fsObj, baselinePath) {
   const file = baselinePath || path.join(__dirname, '..', 'knowledge', 'official-baseline.json');
   try {
@@ -57,7 +100,7 @@ function loadBaseline(fsObj, baselinePath) {
 /**
  * 逐条对照：只写「有证据的差异」，没有证据的写 unknown，不臆测。
  */
-function compare(probe, baseline) {
+function compare(probe, baseline, topicMap) {
   const mismatches = [];
   const add = (item, status, statement, citation, evidence) => {
     mismatches.push({ item, status, statement, citation, evidence: evidence || null });
@@ -160,6 +203,28 @@ function compare(probe, baseline) {
       { voltage: v, percentage: probe.battery.percentage });
   }
 
+  // 10) 官方节点 topic 清单对照（《所有节点 topic 和 service 整理》p.1-3）
+  const gaps = compareTopicMap(probe, topicMap);
+  if (gaps.length) {
+    const critical = gaps.filter((g) => g.alwaysAlive);
+    const optional = gaps.filter((g) => !g.alwaysAlive);
+    if (critical.length) {
+      add('官方常驻数据流', 'warn',
+        `官方清单里的常驻数据流没有出现在 rostopic 列表：${critical.map((g) => g.topic).join(', ')}（对应节点可能未启动）`,
+        '《所有节点 topic 和 service 整理》p.1-3',
+        { missing: critical.map((g) => ({ node: g.node, topic: g.topic, purpose: g.purpose })) });
+    }
+    if (optional.length) {
+      add('官方事件式数据流', 'unknown',
+        `官方清单中 ${optional.length} 个 topic 当前未出现（事件式或示例运行时才发布，不判故障）：` +
+        optional.map((g) => g.topic).join(', '),
+        '《所有节点 topic 和 service 整理》p.1-3',
+        { missing: optional.map((g) => g.topic) });
+    }
+  } else if (probe.topics && probe.topics.all && probe.topics.all.length) {
+    add('官方 topic 清单', 'ok', '官方清单中列出的 topic 均已在 rostopic 列表中出现', '《所有节点 topic 和 service 整理》p.1-3');
+  }
+
   return mismatches;
 }
 
@@ -217,7 +282,8 @@ async function run(ctx, { probe, checks, baselinePath } = {}) {
   if (!probe) throw new Error('official-baseline 需要 probe');
   const fs = ctx.fs || fsDefault;
   const loaded = loadBaseline(fs, baselinePath);
-  const mismatches = compare(probe, loaded.data);
+  const topicMap = loadTopicMap(fs);
+  const mismatches = compare(probe, loaded.data, topicMap.data);
   const steps = officialSelfCheckSteps(probe);
   const notes = safetyNotes(loaded.data);
 
@@ -227,14 +293,21 @@ async function run(ctx, { probe, checks, baselinePath } = {}) {
   ctx.log(
     `[official-baseline] 对照 ${mismatches.length} 项 ` +
     `(ok=${counts.ok} warn=${counts.warn} fail=${counts.fail} unknown=${counts.unknown})` +
-    `${loaded.source === 'fallback' ? ' [使用内置兜底基线]' : ''}`
+    `${loaded.source === 'fallback' ? ' [使用内置兜底基线]' : ''}` +
+    `${topicMap.data ? '' : ' [无 topic 清单]'}`
   );
 
-  return {
-    state: { baseline: { path: loaded.path, source: loaded.source, spec: loaded.data, mismatches, officialSelfCheck: steps, safetyNotes: notes, summary: counts } },
-    baseline: { path: loaded.path, source: loaded.source, spec: loaded.data, mismatches, officialSelfCheck: steps, safetyNotes: notes, summary: counts },
-    checks: checks || []
+  const baseline = {
+    path: loaded.path,
+    source: loaded.source,
+    topicMapPath: topicMap.path,
+    spec: loaded.data,
+    mismatches,
+    officialSelfCheck: steps,
+    safetyNotes: notes,
+    summary: counts
   };
+  return { state: { baseline }, baseline, checks: checks || [] };
 }
 
-module.exports = { id, title, description, inputs, run, compare, loadBaseline };
+module.exports = { id, title, description, inputs, run, compare, compareTopicMap, loadBaseline, loadTopicMap };

@@ -26,12 +26,12 @@
     "joints": {
       "total": 22,
       "breakdown": {
-        "head": 2,
+        "head": "2",
         "shoulder": "1 × 2",
-        "arm": 2,
+        "arm": "2 × 2",
         "hand": "1 × 2",
-        "leg": 5,
-        "foot": 1
+        "leg": "5 × 2",
+        "foot": "1 × 2"
       },
       "servoIds": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
       "machineCheck": "GetJointAngle 应返回 22 个缓存角；ScanServo 应扫到 ID 1–22",
@@ -88,6 +88,7 @@
   "modelDetection": {
     "citation": "《Roban机器人版本查询手册》 p.2",
     "command": "lsb_release -a",
+    "byUbuntu": { "16.04": "Roban 1.0", "20.04": "Roban 2.0" },
     "rules": [
       {
         "osReleaseContains": "16.04",
@@ -106,7 +107,9 @@
   },
   "bootBehavior": {
     "citation": "《ROBAN机器人使用入门》 p.11–12；《Roban_教员培训手册》 p.4",
+    "lockAfterSeconds": 40,
     "servoLockAfterPowerOnSeconds": 40,
+    "emergencyKeyEffect": "红色按键按下 → 全部舵机解锁（主机仍运行）；解锁后必须按关机流程再重启",
     "postBootPose": "全部舵机加锁（无法摆动各关节），姿态恢复到初始站立姿态",
     "preBootRequirement": "开机前须用颈部提带把机器人提至半蹲或站立状态，各舵机处于初始状态",
     "emergencyRedButton": {
@@ -133,6 +136,8 @@
   },
   "officialSelfCheck": {
     "citation": "《Roban机器人自检手册》 p.1–2；《Roban_教员培训手册》 p.24",
+    "command": "check",
+    "startupScript": "~/robot_ros_application/scripts/start.sh",
     "program": "check",
     "howToRun": "VNC 或接屏幕进入桌面 → 右键 New Terminal → 输入 check 回车 → 依次选择编号查看是否有报错，有报错先截图反馈",
     "terminalErrors": {

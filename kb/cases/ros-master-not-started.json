@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "ros-master-not-started",
+  "title": "ROS Master 不可达 / 日志出现 Unable to communicate with master!：需人工执行 start.sh",
+  "component": "system.boot",
+  "checkIds": ["master_unreachable_logs", "boot_autostart", "boot_window", "expected_nodes"],
+  "signature": {
+    "predicates": [
+      { "path": "rosMaster", "op": "eq", "value": "FAIL" },
+      { "path": "boot.startScript", "op": "eq", "value": "OK" }
+    ],
+    "keywords": ["master", "roscore", "start.sh", "节点"]
+  },
+  "autoRepairable": false,
+  "playbook": [],
+  "manualAdvice": "人工启动节点：《Roban_教员培训手册》p.60 写明若缺 bodyhubnode/realsense2_camera 相关节点或直接报 Unable to communicate with master!，需手动执行 ~/robot_ros_application/scripts/start.sh；p.59 说明机器人开机默认调用该脚本，可先用 rosnode list 确认是否已开机启动。agent 不自动执行 start.sh、不重启 roscore/BodyHub 或整机（ATTENTION 规则 3）。",
+  "officialDoc": "《Roban_教员培训手册》 p.60",
+  "cooldownMs": 0,
+  "stats": { "attempts": 0, "successes": 0, "failures": 0, "lastOutcome": null, "lastAttemptAt": null },
+  "recurrences": 0,
+  "lastRecurrence": null,
+  "source": "seed",
+  "confidence": "high",
+  "notes": "官方处理方式只有人工执行 start.sh；自动重启 roscore/roslaunch 属于禁止动作。probe 只读采集 roscore/roslaunch 进程数与日志中该报错出现次数，因此签名用 rosMaster=FAIL + boot.startScript=OK 作为谓词（进程数不可靠时仍可命中）。开机不足 120 s（boot_window）时节点缺失属启动宽限期，不判故障。",
+  "createdAt": "2026-11-26T01:40:00.000Z",
+  "updatedAt": "2026-11-26T01:40:00.000Z"
+}

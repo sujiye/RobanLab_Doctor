@@ -297,6 +297,7 @@ function rateCheck(checks, checkId, rate, okMin, label) {
 function evaluate(probe) {
   const checks = [];
   const nodes = probe.nodes || [];
+  const rates = probe.rates || {};
 
   add(checks, 'ssh',
     probe.sshOk ? 'ok' : 'fail',
@@ -406,10 +407,10 @@ function evaluate(probe) {
   if (probe.realsenseNode !== 'OK') {
     add(checks, 'camera_color', 'fail', 'RealSense 节点不可访问');
   } else {
-    rateCheck(checks, 'camera_color', probe.rates.cameraColor, 5, 'RealSense 彩色图');
+    rateCheck(checks, 'camera_color', rates.cameraColor, 5, 'RealSense 彩色图');
   }
 
-  if (probe.rates.chinCamera === null) {
+  if (rates.chinCamera == null) {
     if (probe.chinCameraNode !== 'OK') {
       add(checks, 'camera_chin', 'fail',
         '下巴相机无数据且节点不可访问；/dev/usb_cam 存在时是安全重启候选');
@@ -419,10 +420,10 @@ function evaluate(probe) {
       add(checks, 'camera_chin', 'warn', '下巴相机节点在线但无数据');
     }
   } else {
-    rateCheck(checks, 'camera_chin', probe.rates.chinCamera, 5, '下巴相机');
+    rateCheck(checks, 'camera_chin', rates.chinCamera, 5, '下巴相机');
   }
 
-  rateCheck(checks, 'battery_topic', probe.rates.battery, 0.5, '电池话题');
+  rateCheck(checks, 'battery_topic', rates.battery, 0.5, '电池话题');
 
   add(checks, 'usb_servo_device',
     probe.usbServo === 'OK' ? 'ok' : 'fail',
@@ -473,17 +474,17 @@ function evaluate(probe) {
       ? '/camera/realsense2_camera 可访问'
       : '/camera/realsense2_camera 不可访问');
 
-  if (probe.rates.imuTorso === null) {
+  if (rates.imuTorso == null) {
     add(checks, 'imu_torso', 'unknown', 'IMU /imu/Torso：无数据（可能事件式或未接入）');
   } else {
-    add(checks, 'imu_torso', 'ok', `IMU /imu/Torso：${probe.rates.imuTorso.toFixed(1)} Hz`);
+    add(checks, 'imu_torso', 'ok', `IMU /imu/Torso：${rates.imuTorso.toFixed(1)} Hz`);
   }
 
-  if (probe.rates.sensorTemperature === null) {
+  if (rates.sensorTemperature == null) {
     add(checks, 'sensor_hub_temperature', 'unknown', 'SensorHub 温度：无数据');
   } else {
     add(checks, 'sensor_hub_temperature', 'ok',
-      `SensorHub 温度：${probe.rates.sensorTemperature.toFixed(1)} Hz`);
+      `SensorHub 温度：${rates.sensorTemperature.toFixed(1)} Hz`);
   }
 
   const summary = { ok: 0, warn: 0, fail: 0, unknown: 0 };
