@@ -17,3 +17,6 @@ npm-debug.log*
 # 运行时产物
 reports/*.tmp
 *.log
+
+# 本地 SSH 主机密钥（推送用，不入库）
+.git-known-hosts
